@@ -8,7 +8,6 @@
 import UIKit
 
 // 참고: https://docs.github.com/en/enterprise-server@2.21/developers/apps/authorizing-oauth-apps
-// 참고2: https://zeddios.tistory.com/1102
 
 class LoginController: UIViewController {
     @IBOutlet weak var userId: UILabel!
@@ -43,7 +42,7 @@ extension LoginController: LoginDelegate {
         DispatchQueue.main.async {
             self.userId.text = "Login Successed"
             
-            guard let mainVC = UIStoryboard(name: "MainController", bundle: nil).instantiateViewController(withIdentifier: "mainVC") as? MainController else { return }
+            guard let mainVC = UIStoryboard(name: "MainController", bundle: nil).instantiateViewController(withIdentifier: "MainTabVC") as? UITabBarController else { return }
             self.navigationController?.pushViewController(mainVC, animated: true)
         }
     }

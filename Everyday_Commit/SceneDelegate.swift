@@ -13,10 +13,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+//        guard let scene = (scene as? UIWindowScene) else { return }
+//        window = UIWindow(windowScene: scene)
+//
+//        guard let mainVC = UIStoryboard(name: "MainController", bundle: nil).instantiateViewController(withIdentifier: "MainVC") as? MainController else { return }
+//        window?.rootViewController = mainVC
+//        window?.makeKeyAndVisible()
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -51,40 +54,34 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let url = URLContexts.first?.url {
             let code = url.absoluteString.split(separator: "=").last?.description ?? ""
             if !code.isEmpty {
-                // code를 얻고 난 후
-                // urlsession
-                let client_id = ClientLogin.client_id
-                let client_secret = ClientLogin.client_secret
-                let tokenReqUrl = ClientLogin.tokenReqUrl
-//                let header = ["Accept": "application/json"]
-                var component = URLComponents(string: tokenReqUrl)
-                
+                var component = URLComponents(string: ClientLogin.tokenReqUrl)
                 let required = [
-                    URLQueryItem(name: "client_id", value: client_id),
-                    URLQueryItem(name: "client_secret", value: client_secret),
+                    URLQueryItem(name: "client_id", value: ClientLogin.client_id),
+                    URLQueryItem(name: "client_secret", value: ClientLogin.client_secret),
                     URLQueryItem(name: "code", value: code)
                 ]
                 component?.queryItems = required
                 
                 guard let tokenUrl = component?.url else { return }
                 var request = URLRequest(url: tokenUrl)
-                request.setValue("application/json", forHTTPHeaderField: "Accept")
+                request.setValue(ClientLogin.tokenReqHeader.1, forHTTPHeaderField: ClientLogin.tokenReqHeader.0)
                 
-                let session = URLSession(configuration: .default)
-                let dataTask = session.dataTask(with: request) { (data, response, error) in
-                    let successRange = 200 ..< 300
-                    guard error == nil, let statusCode = (response as? HTTPURLResponse)?.statusCode, successRange.contains(statusCode) else { return } // 에러 없고, 네트워킹에 성공했는지
-                    guard let resultData = data else { return }
-                    guard let info = UserInfoManager.parseInfo(resultData) else { return }
-                    UserInfoManager.user = info
-                    UserInfoManager.loginSuccessed()
-                }
-                
-                dataTask.resume()
-                
+                UserInfoManager.requestInfo(request, .token)
             }
             // code를 활용해 URLSession 후 UserInfo에 값 입력
         }
+    }
+    
+    func startWithLoginView() {
+        guard let loginVC = UIStoryboard(name: "LoginController", bundle: nil).instantiateViewController(withIdentifier: "LoginNavVC") as? UINavigationController else { return }
+        window?.rootViewController = loginVC
+        window?.makeKeyAndVisible()
+    }
+    
+    func startWithMainView() {
+        guard let mainVC = UIStoryboard(name: "MainController", bundle: nil).instantiateViewController(withIdentifier: "MainTabVC") as? UITabBarController else { return }
+        window?.rootViewController = mainVC
+        window?.makeKeyAndVisible()
     }
 
 

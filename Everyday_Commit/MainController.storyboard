@@ -8,16 +8,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--Today-->
         <scene sceneID="Dwj-vR-uU3">
             <objects>
-                <viewController storyboardIdentifier="mainVC" id="6ez-sK-KF5" customClass="MainController" customModule="Everyday_Commit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainVC" id="6ez-sK-KF5" customClass="MainController" customModule="Everyday_Commit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2xC-bs-a3U">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="main view controller!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wtd-JZ-zgM">
-                                <rect key="frame" x="128.5" y="348" width="157.5" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main Controller" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dwz-pg-QcW">
+                                <rect key="frame" x="148.5" y="437.5" width="117" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -26,23 +26,77 @@
                         <viewLayoutGuide key="safeArea" id="BGj-iU-407"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Wtd-JZ-zgM" firstAttribute="centerX" secondItem="2xC-bs-a3U" secondAttribute="centerX" id="60a-8k-OP6"/>
-                            <constraint firstItem="Wtd-JZ-zgM" firstAttribute="centerY" secondItem="2xC-bs-a3U" secondAttribute="centerY" multiplier="0.8" id="Yvq-qd-D56"/>
+                            <constraint firstItem="dwz-pg-QcW" firstAttribute="centerX" secondItem="2xC-bs-a3U" secondAttribute="centerX" id="JRy-MD-pgg"/>
+                            <constraint firstItem="dwz-pg-QcW" firstAttribute="centerY" secondItem="2xC-bs-a3U" secondAttribute="centerY" id="aAk-rP-n8W"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="IyR-xb-UcM"/>
+                    <tabBarItem key="tabBarItem" title="Today" image="sun.min" catalog="system" id="IyR-xb-UcM"/>
                     <connections>
-                        <outlet property="userId" destination="Wtd-JZ-zgM" id="6ah-Q0-589"/>
+                        <outlet property="userId" destination="dwz-pg-QcW" id="pau-Ez-dwT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cn7-3n-v9I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="533" y="-153"/>
+            <point key="canvasLocation" x="2147.826086956522" y="-765.40178571428567"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="kKI-PS-HWp">
+            <objects>
+                <tabBarController storyboardIdentifier="MainTabVC" automaticallyAdjustsScrollViewInsets="NO" id="cLM-Z7-B7O" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="na6-j5-W5s">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" systemColor="systemOrangeColor"/>
+                        <color key="selectedImageTintColor" systemColor="systemOrangeColor"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="6ez-sK-KF5" kind="relationship" relationship="viewControllers" id="7pa-V9-f8Q"/>
+                        <segue destination="MGO-qS-qdi" kind="relationship" relationship="viewControllers" id="w5i-8L-rrR"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6N2-Vm-EN9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1250.7246376811595" y="-461.38392857142856"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="NRs-CG-IQx">
+            <objects>
+                <viewController id="MGO-qS-qdi" customClass="SettingsController" customModule="Everyday_Commit" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rZD-W2-QVq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Setting Controller" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UHL-pC-KlL">
+                                <rect key="frame" x="140" y="437.5" width="134" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="EnB-Et-6Lr"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="UHL-pC-KlL" firstAttribute="centerY" secondItem="rZD-W2-QVq" secondAttribute="centerY" id="WSd-sA-FwJ"/>
+                            <constraint firstItem="UHL-pC-KlL" firstAttribute="centerX" secondItem="rZD-W2-QVq" secondAttribute="centerX" id="fme-2t-8R3"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Settings" image="gearshape" catalog="system" id="4DO-y7-QWZ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MVs-Q2-S8A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2143" y="-115"/>
         </scene>
     </scenes>
     <resources>
+        <image name="gearshape" catalog="system" width="128" height="121"/>
+        <image name="sun.min" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
