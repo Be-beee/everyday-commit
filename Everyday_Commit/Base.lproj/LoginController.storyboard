@@ -16,15 +16,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lOO-4N-6WJ">
-                                <rect key="frame" x="190" y="522.5" width="34" height="30"/>
-                                <state key="normal" title="login"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lOO-4N-6WJ">
+                                <rect key="frame" x="40" y="557.5" width="334" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="psp-AP-8z2"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="20" maxY="0.0"/>
+                                <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="-20" maxY="0.0"/>
+                                <state key="normal" title="Github로 로그인" image="GitHub-Mark-Light-32px">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="loginGithub:" destination="BYZ-38-t0r" eventType="touchUpInside" id="01Q-tT-1aL"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Id" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SBO-t7-3gy">
-                                <rect key="frame" x="179.5" y="348" width="55" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="반갑습니다! 👋" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6AP-Rw-t7t">
+                                <rect key="frame" x="30" y="109" width="169" height="34"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="서비스 이용을 위해 Github 계정이 필요합니다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cvo-fo-oKD">
+                                <rect key="frame" x="30" y="169" width="312.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="로그인해서 매일 커밋을 시작해보세요!😎" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qr6-4F-FPd">
+                                <rect key="frame" x="30" y="194.5" width="276.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -33,20 +53,22 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="lOO-4N-6WJ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="1.2" id="Scg-0X-sdW"/>
-                            <constraint firstItem="SBO-t7-3gy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YX8-ti-tn2"/>
-                            <constraint firstItem="lOO-4N-6WJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="c9i-AA-z7V"/>
-                            <constraint firstItem="SBO-t7-3gy" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.8" id="cdR-q0-Q2u"/>
+                            <constraint firstItem="cvo-fo-oKD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="HLf-hT-rji"/>
+                            <constraint firstItem="lOO-4N-6WJ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="1.3" id="Scg-0X-sdW"/>
+                            <constraint firstItem="6AP-Rw-t7t" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="65" id="Ytp-o5-uAN"/>
+                            <constraint firstItem="lOO-4N-6WJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="Zvx-zP-bMJ"/>
+                            <constraint firstItem="Qr6-4F-FPd" firstAttribute="top" secondItem="cvo-fo-oKD" secondAttribute="bottom" constant="5" id="dJa-7k-R5q"/>
+                            <constraint firstItem="Qr6-4F-FPd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="dpV-eU-CeF"/>
+                            <constraint firstItem="6AP-Rw-t7t" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="eRn-gs-klr"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="lOO-4N-6WJ" secondAttribute="trailing" constant="40" id="oo7-Yf-dR5"/>
+                            <constraint firstItem="cvo-fo-oKD" firstAttribute="top" secondItem="6AP-Rw-t7t" secondAttribute="bottom" constant="26" id="wfT-6U-CrZ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="XFa-Fn-rm9"/>
-                    <connections>
-                        <outlet property="userId" destination="SBO-t7-3gy" id="aQf-Le-4EP"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="601" y="94"/>
+            <point key="canvasLocation" x="610" y="94"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Voq-xo-Sfm">
@@ -67,6 +89,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="GitHub-Mark-Light-32px" width="32" height="32"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
