@@ -85,7 +85,7 @@ class UserInfoManager {
         delegate?.loginSucceessed()
     }
     
-    static func requestInfo(_ request: URLRequest, _ parseType: ParseType) {
+    static func requestInfo(_ request: URLRequest, _ parseType: ParseType, _ completion: @escaping (() -> Void)) {
         let session = URLSession(configuration: .default)
         let dataTask = session.dataTask(with: request) { (data, response, error) in
             let successRange = 200 ..< 300
@@ -96,14 +96,18 @@ class UserInfoManager {
                 tokens = info
                 
                 guard let token = tokens?.access_token else { return }
-                print(token)
+                UserDefaults(suiteName: "group.com.sbk.todaycommit")!.set(token, forKey: "token")
+//                print(token)
                 guard let url = URL(string: ClientLogin.reqUserInfoUrl) else { return }
                 var req = URLRequest(url: url)
                 req.setValue("token \(token)", forHTTPHeaderField: ClientLogin.userInfoHeader.0)
-                requestInfo(req, .user)
+                requestInfo(req, .user) {}
             } else {
                 guard let info = parseUserInfo(resultData) else { return }
                 user = info
+                DispatchQueue.main.async {
+                    completion()
+                }
                 self.loginSuccessed()
             }
         }

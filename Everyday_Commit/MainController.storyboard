@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -170,18 +170,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Setting Controller" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UHL-pC-KlL">
-                                <rect key="frame" x="140" y="437.5" width="134" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TkK-wA-6Pb">
+                                <rect key="frame" x="185" y="433" width="44" height="30"/>
+                                <state key="normal" title="logout"/>
+                                <connections>
+                                    <action selector="logoutGithub:" destination="MGO-qS-qdi" eventType="touchUpInside" id="tBG-4X-6bN"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="EnB-Et-6Lr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="UHL-pC-KlL" firstAttribute="centerY" secondItem="rZD-W2-QVq" secondAttribute="centerY" id="WSd-sA-FwJ"/>
-                            <constraint firstItem="UHL-pC-KlL" firstAttribute="centerX" secondItem="rZD-W2-QVq" secondAttribute="centerX" id="fme-2t-8R3"/>
+                            <constraint firstItem="TkK-wA-6Pb" firstAttribute="centerX" secondItem="rZD-W2-QVq" secondAttribute="centerX" id="H0t-Zn-otp"/>
+                            <constraint firstItem="TkK-wA-6Pb" firstAttribute="centerY" secondItem="rZD-W2-QVq" secondAttribute="centerY" id="OaE-RJ-eTI"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="gearshape" catalog="system" id="4DO-y7-QWZ"/>

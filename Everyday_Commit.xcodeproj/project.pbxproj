@@ -14,10 +14,39 @@
 		B50A06F125590A80002DB64C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B50A06F025590A80002DB64C /* Assets.xcassets */; };
 		B50A06F425590A80002DB64C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B50A06F225590A80002DB64C /* LaunchScreen.storyboard */; };
 		B5559CAD25597B0000130F40 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5559CAC25597B0000130F40 /* Common.swift */; };
+		B56B8755255EC183003DB1D0 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B56B8754255EC183003DB1D0 /* WidgetKit.framework */; };
+		B56B8757255EC183003DB1D0 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B56B8756255EC183003DB1D0 /* SwiftUI.framework */; };
+		B56B875A255EC183003DB1D0 /* TodayCommitWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56B8759255EC183003DB1D0 /* TodayCommitWidget.swift */; };
+		B56B875C255EC184003DB1D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B56B875B255EC184003DB1D0 /* Assets.xcassets */; };
+		B56B8760255EC184003DB1D0 /* TodayCommitWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B56B8752255EC183003DB1D0 /* TodayCommitWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B596A3C1255BBAE900E540A5 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596A3C0255BBAE900E540A5 /* SettingsController.swift */; };
 		B5C9EC49255A5D850074AF53 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C9EC48255A5D850074AF53 /* MainController.swift */; };
 		B5C9EC4D255A5DE90074AF53 /* MainController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5C9EC4C255A5DE90074AF53 /* MainController.storyboard */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B56B875E255EC184003DB1D0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B50A06DC25590A80002DB64C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B56B8751255EC183003DB1D0;
+			remoteInfo = TodayCommitWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B56B8761255EC184003DB1D0 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B56B8760255EC184003DB1D0 /* TodayCommitWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		B50A06E425590A80002DB64C /* Everyday_Commit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Everyday_Commit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -28,7 +57,15 @@
 		B50A06F025590A80002DB64C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B50A06F325590A80002DB64C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B50A06F525590A80002DB64C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B52CB0582566956200521BD6 /* Everyday_Commit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Everyday_Commit.entitlements; sourceTree = "<group>"; };
+		B52CB05B2566A2C600521BD6 /* TodayCommitWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TodayCommitWidgetExtension.entitlements; sourceTree = "<group>"; };
 		B5559CAC25597B0000130F40 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		B56B8752255EC183003DB1D0 /* TodayCommitWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TodayCommitWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		B56B8754255EC183003DB1D0 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		B56B8756255EC183003DB1D0 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		B56B8759255EC183003DB1D0 /* TodayCommitWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayCommitWidget.swift; sourceTree = "<group>"; };
+		B56B875B255EC184003DB1D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B56B875D255EC184003DB1D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B596A3C0255BBAE900E540A5 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		B5C9EC48255A5D850074AF53 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		B5C9EC4C255A5DE90074AF53 /* MainController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainController.storyboard; sourceTree = "<group>"; };
@@ -42,13 +79,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B56B874F255EC183003DB1D0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B56B8757255EC183003DB1D0 /* SwiftUI.framework in Frameworks */,
+				B56B8755255EC183003DB1D0 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		B50A06DB25590A80002DB64C = {
 			isa = PBXGroup;
 			children = (
+				B52CB05B2566A2C600521BD6 /* TodayCommitWidgetExtension.entitlements */,
 				B50A06E625590A80002DB64C /* Everyday_Commit */,
+				B56B8758255EC183003DB1D0 /* TodayCommitWidget */,
+				B56B8753255EC183003DB1D0 /* Frameworks */,
 				B50A06E525590A80002DB64C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -57,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				B50A06E425590A80002DB64C /* Everyday_Commit.app */,
+				B56B8752255EC183003DB1D0 /* TodayCommitWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -64,6 +114,7 @@
 		B50A06E625590A80002DB64C /* Everyday_Commit */ = {
 			isa = PBXGroup;
 			children = (
+				B52CB0582566956200521BD6 /* Everyday_Commit.entitlements */,
 				B50A06E725590A80002DB64C /* AppDelegate.swift */,
 				B50A06E925590A80002DB64C /* SceneDelegate.swift */,
 				B5559CAC25597B0000130F40 /* Common.swift */,
@@ -79,6 +130,25 @@
 			path = Everyday_Commit;
 			sourceTree = "<group>";
 		};
+		B56B8753255EC183003DB1D0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B56B8754255EC183003DB1D0 /* WidgetKit.framework */,
+				B56B8756255EC183003DB1D0 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B56B8758255EC183003DB1D0 /* TodayCommitWidget */ = {
+			isa = PBXGroup;
+			children = (
+				B56B8759255EC183003DB1D0 /* TodayCommitWidget.swift */,
+				B56B875B255EC184003DB1D0 /* Assets.xcassets */,
+				B56B875D255EC184003DB1D0 /* Info.plist */,
+			);
+			path = TodayCommitWidget;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -89,15 +159,34 @@
 				B50A06E025590A80002DB64C /* Sources */,
 				B50A06E125590A80002DB64C /* Frameworks */,
 				B50A06E225590A80002DB64C /* Resources */,
+				B56B8761255EC184003DB1D0 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B56B875F255EC184003DB1D0 /* PBXTargetDependency */,
 			);
 			name = Everyday_Commit;
 			productName = Everyday_Commit;
 			productReference = B50A06E425590A80002DB64C /* Everyday_Commit.app */;
 			productType = "com.apple.product-type.application";
+		};
+		B56B8751255EC183003DB1D0 /* TodayCommitWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B56B8764255EC184003DB1D0 /* Build configuration list for PBXNativeTarget "TodayCommitWidgetExtension" */;
+			buildPhases = (
+				B56B874E255EC183003DB1D0 /* Sources */,
+				B56B874F255EC183003DB1D0 /* Frameworks */,
+				B56B8750255EC183003DB1D0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TodayCommitWidgetExtension;
+			productName = TodayCommitWidgetExtension;
+			productReference = B56B8752255EC183003DB1D0 /* TodayCommitWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -109,6 +198,9 @@
 				LastUpgradeCheck = 1210;
 				TargetAttributes = {
 					B50A06E325590A80002DB64C = {
+						CreatedOnToolsVersion = 12.1;
+					};
+					B56B8751255EC183003DB1D0 = {
 						CreatedOnToolsVersion = 12.1;
 					};
 				};
@@ -127,6 +219,7 @@
 			projectRoot = "";
 			targets = (
 				B50A06E325590A80002DB64C /* Everyday_Commit */,
+				B56B8751255EC183003DB1D0 /* TodayCommitWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -140,6 +233,14 @@
 				B5C9EC4D255A5DE90074AF53 /* MainController.storyboard in Resources */,
 				B50A06F125590A80002DB64C /* Assets.xcassets in Resources */,
 				B50A06EF25590A80002DB64C /* LoginController.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B56B8750255EC183003DB1D0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B56B875C255EC184003DB1D0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,7 +260,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B56B874E255EC183003DB1D0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B56B875A255EC183003DB1D0 /* TodayCommitWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B56B875F255EC184003DB1D0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B56B8751255EC183003DB1D0 /* TodayCommitWidgetExtension */;
+			targetProxy = B56B875E255EC184003DB1D0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B50A06ED25590A80002DB64C /* LoginController.storyboard */ = {
@@ -300,8 +417,10 @@
 		B50A06F925590A80002DB64C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Everyday_Commit/Everyday_Commit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NSCRL9SYQK;
 				INFOPLIST_FILE = Everyday_Commit/Info.plist;
@@ -319,8 +438,10 @@
 		B50A06FA25590A80002DB64C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Everyday_Commit/Everyday_Commit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NSCRL9SYQK;
 				INFOPLIST_FILE = Everyday_Commit/Info.plist;
@@ -330,6 +451,50 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sbk.Everyday-Commit";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B56B8762255EC184003DB1D0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = TodayCommitWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NSCRL9SYQK;
+				INFOPLIST_FILE = TodayCommitWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sbk.Everyday-Commit.TodayCommitWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B56B8763255EC184003DB1D0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = TodayCommitWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NSCRL9SYQK;
+				INFOPLIST_FILE = TodayCommitWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sbk.Everyday-Commit.TodayCommitWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -352,6 +517,15 @@
 			buildConfigurations = (
 				B50A06F925590A80002DB64C /* Debug */,
 				B50A06FA25590A80002DB64C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B56B8764255EC184003DB1D0 /* Build configuration list for PBXNativeTarget "TodayCommitWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B56B8762255EC184003DB1D0 /* Debug */,
+				B56B8763255EC184003DB1D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

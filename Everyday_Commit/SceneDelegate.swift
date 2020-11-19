@@ -13,12 +13,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-//        guard let scene = (scene as? UIWindowScene) else { return }
-//        window = UIWindow(windowScene: scene)
-//
-//        guard let mainVC = UIStoryboard(name: "MainController", bundle: nil).instantiateViewController(withIdentifier: "MainVC") as? MainController else { return }
-//        window?.rootViewController = mainVC
-//        window?.makeKeyAndVisible()
+        guard let scene = (scene as? UIWindowScene) else { return }
+        window = UIWindow(windowScene: scene)
+        
+        if let token = UserDefaults(suiteName: "group.com.sbk.todaycommit")?.string(forKey: "token") {
+            print(token)
+            guard let url = URL(string: ClientLogin.reqUserInfoUrl) else { return }
+            var req = URLRequest(url: url)
+            req.setValue("token \(token)", forHTTPHeaderField: ClientLogin.userInfoHeader.0)
+            UserInfoManager.requestInfo(req, .user){
+                self.startWithMainView()
+            }
+        } else {
+            startWithLoginView()
+        }
         
     }
 
@@ -66,7 +74,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 var request = URLRequest(url: tokenUrl)
                 request.setValue(ClientLogin.tokenReqHeader.1, forHTTPHeaderField: ClientLogin.tokenReqHeader.0)
                 
-                UserInfoManager.requestInfo(request, .token)
+                UserInfoManager.requestInfo(request, .token){}
             }
             // code를 활용해 URLSession 후 UserInfo에 값 입력
         }
