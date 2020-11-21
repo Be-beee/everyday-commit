@@ -13,6 +13,7 @@
 		B50A06EF25590A80002DB64C /* LoginController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B50A06ED25590A80002DB64C /* LoginController.storyboard */; };
 		B50A06F125590A80002DB64C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B50A06F025590A80002DB64C /* Assets.xcassets */; };
 		B50A06F425590A80002DB64C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B50A06F225590A80002DB64C /* LaunchScreen.storyboard */; };
+		B54B7D842567FB4B00228DD8 /* SettingsListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54B7D832567FB4B00228DD8 /* SettingsListController.swift */; };
 		B5559CAD25597B0000130F40 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5559CAC25597B0000130F40 /* Common.swift */; };
 		B56B8755255EC183003DB1D0 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B56B8754255EC183003DB1D0 /* WidgetKit.framework */; };
 		B56B8757255EC183003DB1D0 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B56B8756255EC183003DB1D0 /* SwiftUI.framework */; };
@@ -59,6 +60,7 @@
 		B50A06F525590A80002DB64C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B52CB0582566956200521BD6 /* Everyday_Commit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Everyday_Commit.entitlements; sourceTree = "<group>"; };
 		B52CB05B2566A2C600521BD6 /* TodayCommitWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TodayCommitWidgetExtension.entitlements; sourceTree = "<group>"; };
+		B54B7D832567FB4B00228DD8 /* SettingsListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsListController.swift; sourceTree = "<group>"; };
 		B5559CAC25597B0000130F40 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		B56B8752255EC183003DB1D0 /* TodayCommitWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TodayCommitWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		B56B8754255EC183003DB1D0 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -119,9 +121,10 @@
 				B50A06E925590A80002DB64C /* SceneDelegate.swift */,
 				B5559CAC25597B0000130F40 /* Common.swift */,
 				B50A06EB25590A80002DB64C /* LoginController.swift */,
+				B50A06ED25590A80002DB64C /* LoginController.storyboard */,
 				B5C9EC48255A5D850074AF53 /* MainController.swift */,
 				B596A3C0255BBAE900E540A5 /* SettingsController.swift */,
-				B50A06ED25590A80002DB64C /* LoginController.storyboard */,
+				B54B7D832567FB4B00228DD8 /* SettingsListController.swift */,
 				B5C9EC4C255A5DE90074AF53 /* MainController.storyboard */,
 				B50A06F025590A80002DB64C /* Assets.xcassets */,
 				B50A06F225590A80002DB64C /* LaunchScreen.storyboard */,
@@ -254,6 +257,7 @@
 				B596A3C1255BBAE900E540A5 /* SettingsController.swift in Sources */,
 				B5559CAD25597B0000130F40 /* Common.swift in Sources */,
 				B50A06EC25590A80002DB64C /* LoginController.swift in Sources */,
+				B54B7D842567FB4B00228DD8 /* SettingsListController.swift in Sources */,
 				B50A06E825590A80002DB64C /* AppDelegate.swift in Sources */,
 				B50A06EA25590A80002DB64C /* SceneDelegate.swift in Sources */,
 				B5C9EC49255A5D850074AF53 /* MainController.swift in Sources */,

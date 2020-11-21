@@ -13,10 +13,4 @@ class SettingsController: UIViewController {
         super.viewDidLoad()
         
     }
-
-    @IBAction func logoutGithub(_ sender: UIButton) {
-        UserDefaults(suiteName: "group.com.sbk.todaycommit")?.removeObject(forKey: "token")
-        self.navigationController?.popViewController(animated: true)
-        // logout 안 됨
-    }
 }
