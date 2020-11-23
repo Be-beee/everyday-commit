@@ -18,6 +18,8 @@ class LoginController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
+    
+    @IBAction func unwindToLogin(sender: UIStoryboardSegue) {}
 
     @IBAction func loginGithub(_ sender: UIButton) {
         let clientID = ClientLogin.client_id

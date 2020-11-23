@@ -13,4 +13,9 @@ class SettingsController: UIViewController {
         super.viewDidLoad()
         
     }
+    @IBAction func logout(_ sender: Any) {
+        UserDefaults(suiteName: "group.com.sbk.todaycommit")?.removeObject(forKey: "token")
+        // 화면 이동하기
+        self.performSegue(withIdentifier: "toLogin", sender: self)
+    }
 }

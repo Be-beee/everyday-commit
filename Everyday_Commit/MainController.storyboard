@@ -177,26 +177,49 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zEZ-AG-t3y">
-                                <rect key="frame" x="0.0" y="111" width="414" height="702"/>
+                                <rect key="frame" x="0.0" y="111" width="414" height="310"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="310" id="ONI-Xa-QmI"/>
+                                </constraints>
                                 <connections>
                                     <segue destination="Uyv-gw-t0d" kind="embed" id="QIs-oS-FiZ"/>
                                 </connections>
                             </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j2w-7g-qcy">
+                                <rect key="frame" x="0.0" y="431" width="414" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="NXm-vO-BSR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="로그아웃">
+                                    <color key="titleColor" systemColor="systemRedColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="logout:" destination="MGO-qS-qdi" eventType="touchUpInside" id="xXU-DP-gb2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="EnB-Et-6Lr"/>
                         <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="EnB-Et-6Lr" firstAttribute="bottom" secondItem="zEZ-AG-t3y" secondAttribute="bottom" id="6PL-in-qxF"/>
+                            <constraint firstItem="EnB-Et-6Lr" firstAttribute="trailing" secondItem="j2w-7g-qcy" secondAttribute="trailing" id="9jk-fD-128"/>
                             <constraint firstItem="EnB-Et-6Lr" firstAttribute="trailing" secondItem="zEZ-AG-t3y" secondAttribute="trailing" id="B6M-ZB-wvW"/>
                             <constraint firstItem="zEZ-AG-t3y" firstAttribute="leading" secondItem="EnB-Et-6Lr" secondAttribute="leading" id="KzI-dC-6vj"/>
                             <constraint firstItem="Ht3-nr-ywg" firstAttribute="leading" secondItem="EnB-Et-6Lr" secondAttribute="leading" constant="20" id="Oe8-EN-ZKN"/>
                             <constraint firstItem="zEZ-AG-t3y" firstAttribute="top" secondItem="Ht3-nr-ywg" secondAttribute="bottom" constant="10" id="RjC-VO-byY"/>
+                            <constraint firstItem="j2w-7g-qcy" firstAttribute="top" secondItem="zEZ-AG-t3y" secondAttribute="bottom" constant="10" id="UMG-rC-GqW"/>
                             <constraint firstItem="Ht3-nr-ywg" firstAttribute="top" secondItem="EnB-Et-6Lr" secondAttribute="top" constant="30" id="YSB-r9-1Bf"/>
+                            <constraint firstItem="j2w-7g-qcy" firstAttribute="leading" secondItem="EnB-Et-6Lr" secondAttribute="leading" id="hlb-dg-5LB"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="gearshape" catalog="system" id="4DO-y7-QWZ"/>
+                    <connections>
+                        <segue destination="M9K-0c-Amx" kind="unwind" identifier="toLogin" unwindAction="unwindToLoginWithSender:" id="AL0-ik-8EJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MVs-Q2-S8A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="M9K-0c-Amx" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2147.826086956522" y="-83.035714285714278"/>
         </scene>
@@ -205,7 +228,7 @@
             <objects>
                 <tableViewController id="Uyv-gw-t0d" customClass="SettingsListController" customModule="Everyday_Commit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="50" sectionHeaderHeight="18" sectionFooterHeight="18" id="fQ4-HC-7OC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="702"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="310"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <sections>
@@ -278,27 +301,6 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection id="xbm-YL-JVI">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="logoutCell" textLabel="hDR-fS-8WM" rowHeight="50" style="IBUITableViewCellStyleDefault" id="qKV-4B-5ql">
-                                        <rect key="frame" x="0.0" y="290" width="414" height="50"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qKV-4B-5ql" id="hPN-5k-eGK">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="로그아웃" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hDR-fS-8WM">
-                                                    <rect key="frame" x="20" y="0.0" width="374" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" systemColor="systemRedColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>

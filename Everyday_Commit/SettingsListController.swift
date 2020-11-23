@@ -17,10 +17,9 @@ class SettingsListController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
-        case 2:
-            UserDefaults(suiteName: "group.com.sbk.todaycommit")?.removeObject(forKey: "token")
-            // 화면 이동하기
-            // self.performSegue
+        case 0:
+            guard let userDetailVC = UIStoryboard(name: "UserDetailController", bundle: nil).instantiateViewController(withIdentifier: "UserDetailController") as? UserDetailController else { return }
+            self.present(userDetailVC, animated: true, completion: nil)
         default:
             print("indexPath section: \(indexPath.section), row: \(indexPath.row)")
         }

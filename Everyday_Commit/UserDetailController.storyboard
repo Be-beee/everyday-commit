@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--User Detail Controller-->
+        <scene sceneID="u4e-G6-0CU">
+            <objects>
+                <viewController storyboardIdentifier="UserDetailController" id="exN-LO-wsz" customClass="UserDetailController" customModule="Everyday_Commit" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3dr-A9-hco">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aer-us-Vtz">
+                                <rect key="frame" x="107" y="213.5" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="6Ea-mt-L8J"/>
+                                    <constraint firstAttribute="width" constant="200" id="6FX-UH-qCm"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USER ID" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="feR-h8-SO3">
+                                <rect key="frame" x="20" y="437.5" width="374" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bWR-Ar-3u9">
+                                <rect key="frame" x="20" y="503.5" width="374" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="cHY-6a-brm"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="cHY-6a-brm" firstAttribute="trailing" secondItem="feR-h8-SO3" secondAttribute="trailing" constant="20" id="Fyf-5d-zo5"/>
+                            <constraint firstItem="aer-us-Vtz" firstAttribute="centerY" secondItem="3dr-A9-hco" secondAttribute="centerY" multiplier="0.7" id="P94-Gq-jR3"/>
+                            <constraint firstItem="bWR-Ar-3u9" firstAttribute="top" secondItem="feR-h8-SO3" secondAttribute="bottom" constant="42" id="RRf-9e-XHR"/>
+                            <constraint firstItem="feR-h8-SO3" firstAttribute="leading" secondItem="cHY-6a-brm" secondAttribute="leading" constant="20" id="TnR-XP-IEq"/>
+                            <constraint firstItem="cHY-6a-brm" firstAttribute="trailing" secondItem="bWR-Ar-3u9" secondAttribute="trailing" constant="20" id="UTe-Zl-nPN"/>
+                            <constraint firstItem="aer-us-Vtz" firstAttribute="centerX" secondItem="3dr-A9-hco" secondAttribute="centerX" id="Vok-Ia-sSk"/>
+                            <constraint firstItem="bWR-Ar-3u9" firstAttribute="leading" secondItem="cHY-6a-brm" secondAttribute="leading" constant="20" id="aUx-HU-Sp4"/>
+                            <constraint firstItem="feR-h8-SO3" firstAttribute="top" secondItem="aer-us-Vtz" secondAttribute="bottom" constant="24" id="vzc-3I-huX"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="userDescriptionLabel" destination="bWR-Ar-3u9" id="Jg8-8G-sPE"/>
+                        <outlet property="userIdLabel" destination="feR-h8-SO3" id="AmY-1r-7dz"/>
+                        <outlet property="userImage" destination="aer-us-Vtz" id="Acm-Bk-aZK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ryO-dv-ssE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5.7971014492753632" y="60.9375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
