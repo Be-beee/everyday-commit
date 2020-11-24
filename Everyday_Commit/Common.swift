@@ -42,15 +42,6 @@ class UserInfo: Codable { // 필요하면 데이터를 더 가져올 수 있음
     var bio: String
     var public_repos: Int
     var updated_at: String
-    
-    init(login: String, name: String, avatar_url: String, bio: String, public_repos: Int, updated_at: String) {
-        self.login = login
-        self.name = name
-        self.avatar_url = avatar_url
-        self.bio = bio
-        self.public_repos = public_repos
-        self.updated_at = updated_at
-    }
 }
 
 class UserInfoManager {

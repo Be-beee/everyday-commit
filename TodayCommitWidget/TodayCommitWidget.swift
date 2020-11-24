@@ -8,46 +8,94 @@
 import WidgetKit
 import SwiftUI
 
+class NetworkManager {
+    func fetchData(token: String, completion: @escaping (UserInfo) -> Void) {
+        guard let url = URL(string: "https://api.github.com/user") else {
+            print("Please check URL")
+            return
+        }
+         
+        var request = URLRequest(url: url)
+        request.setValue("token \(token)", forHTTPHeaderField: "Authorization")
+        let session = URLSession(configuration: .default)
+        let dataTask = session.dataTask(with: request) { data, response, error in
+            if let data = data, let decodedData = try? JSONDecoder().decode(UserInfo.self, from: data) {
+//                self.user = decodedData
+                print(decodedData.login)
+                completion(decodedData)
+                return
+            }
+         
+            print(error?.localizedDescription ?? "ERROR !")
+        }
+        dataTask.resume()
+    }
+}
+
 struct Provider: TimelineProvider {
+    var networkManager = NetworkManager()
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date())
+        SimpleEntry(date: Date(), id: "None")
     }
 
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date())
+        let entry = SimpleEntry(date: Date(), id: "None")
         completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [SimpleEntry] = []
 
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate)
-            entries.append(entry)
-        }
+        if let token = UserDefaults(suiteName: "group.com.sbk.todaycommit")?.string(forKey: "token") {
+            networkManager.fetchData(token: token) { (data) in
+                let entries = [
+                    SimpleEntry(date: Date(), id: data.login)
+                ]
+                let timeline = Timeline(entries: entries, policy: .never)
+                completion(timeline)
+            }
+        } else {
+            let currentDate = Date()
+            for secOffset in 0 ..< 5 {
+                let entryDate = Calendar.current.date(byAdding: .second, value: secOffset, to: currentDate)!
+                let entry = SimpleEntry(date: entryDate, id: "None")
+                entries.append(entry)
+            }
 
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
+            let timeline = Timeline(entries: entries, policy: .atEnd)
+            completion(timeline)
+        }
     }
 }
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
+    let id: String
+}
+
+struct UserInfo: Codable {
+    var login: String
+    var name: String
+    var avatar_url: String
+    var bio: String
+    var public_repos: Int
+    var updated_at: String
 }
 
 struct TodayCommitWidgetEntryView : View {
     var entry: Provider.Entry
+    @State var user: UserInfo?
 
     var body: some View {
-        if let token = UserDefaults(suiteName: "group.com.sbk.todaycommit")?.string(forKey: "token") {
-            Text(token)
+        if let _ = UserDefaults(suiteName: "group.com.sbk.todaycommit")?.string(forKey: "token") {
+            VStack {
+                Text(entry.id)
+            }
         } else {
-            Text("나 너무 슬퍼")
+            Text("로그인 해주세요!")
         }
     }
+    
 }
 
 @main
@@ -65,7 +113,7 @@ struct TodayCommitWidget: Widget {
 
 struct TodayCommitWidget_Previews: PreviewProvider {
     static var previews: some View {
-        TodayCommitWidgetEntryView(entry: SimpleEntry(date: Date()))
+        TodayCommitWidgetEntryView(entry: SimpleEntry(date: Date(), id: "User Id"))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }
