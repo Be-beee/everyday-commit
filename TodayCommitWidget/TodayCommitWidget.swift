@@ -19,14 +19,12 @@ class NetworkManager {
         request.setValue("token \(token)", forHTTPHeaderField: "Authorization")
         let session = URLSession(configuration: .default)
         let dataTask = session.dataTask(with: request) { data, response, error in
+            let successRange = 200 ..< 300
+            guard error == nil, let statusCode = (response as? HTTPURLResponse)?.statusCode, successRange.contains(statusCode) else { return }
             if let data = data, let decodedData = try? JSONDecoder().decode(UserInfo.self, from: data) {
-//                self.user = decodedData
-                print(decodedData.login)
                 completion(decodedData)
                 return
             }
-         
-            print(error?.localizedDescription ?? "ERROR !")
         }
         dataTask.resume()
     }
@@ -34,31 +32,31 @@ class NetworkManager {
 
 struct Provider: TimelineProvider {
     var networkManager = NetworkManager()
-    func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), id: "None")
+    func placeholder(in context: Context) -> UserEntry {
+        UserEntry(date: Date(), id: "None")
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), id: "None")
+    func getSnapshot(in context: Context, completion: @escaping (UserEntry) -> ()) {
+        let entry = UserEntry(date: Date(), id: "None")
         completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
 
         if let token = UserDefaults(suiteName: "group.com.sbk.todaycommit")?.string(forKey: "token") {
             networkManager.fetchData(token: token) { (data) in
                 let entries = [
-                    SimpleEntry(date: Date(), id: data.login)
+                    UserEntry(date: Date(), id: data.login)
                 ]
                 let timeline = Timeline(entries: entries, policy: .never)
                 completion(timeline)
             }
         } else {
+            var entries: [UserEntry] = []
             let currentDate = Date()
             for secOffset in 0 ..< 5 {
                 let entryDate = Calendar.current.date(byAdding: .second, value: secOffset, to: currentDate)!
-                let entry = SimpleEntry(date: entryDate, id: "None")
+                let entry = UserEntry(date: entryDate, id: "None")
                 entries.append(entry)
             }
 
@@ -68,7 +66,7 @@ struct Provider: TimelineProvider {
     }
 }
 
-struct SimpleEntry: TimelineEntry {
+struct UserEntry: TimelineEntry {
     let date: Date
     let id: String
 }
@@ -113,7 +111,7 @@ struct TodayCommitWidget: Widget {
 
 struct TodayCommitWidget_Previews: PreviewProvider {
     static var previews: some View {
-        TodayCommitWidgetEntryView(entry: SimpleEntry(date: Date(), id: "User Id"))
+        TodayCommitWidgetEntryView(entry: UserEntry(date: Date(), id: "User Id"))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

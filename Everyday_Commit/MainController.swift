@@ -9,6 +9,7 @@ import UIKit
 
 class MainController: UIViewController {
 
+    var userContributions: UserContributions?
     @IBOutlet weak var commitHistoryView: UICollectionView!
     
     @IBOutlet weak var userId: UILabel!
@@ -22,6 +23,7 @@ class MainController: UIViewController {
         if let id = UserInfoManager.user?.login, let img = UserInfoManager.user?.avatar_url {
             userId.text = id
             userImg.image = urlToImage(from: img)
+            callCommitData()
         }
     }
     
@@ -35,6 +37,21 @@ class MainController: UIViewController {
         } else {
             return UIImage()
         }
+    }
+    func callCommitData() {
+        guard let contributionsUrl = URL(string: "https://github.com/users/Be-beee/contributions") else { return }
+        let session = URLSession(configuration: .default)
+        let dataTask = session.dataTask(with: contributionsUrl) { (data, response, error) in
+            let success = 200 ..< 300
+            guard error == nil, let statusCode = (response as? HTTPURLResponse)?.statusCode, success.contains(statusCode) else { return }
+            guard let result = data else { return }
+            let parser = ContributionsParser(data: result)
+            DispatchQueue.main.async {
+                self.userContributions = parser.userContributions
+                self.commitHistoryView.reloadData()
+            }
+        }
+        dataTask.resume()
     }
     
 }
@@ -51,12 +68,20 @@ extension MainController: UICollectionViewDelegateFlowLayout {
 extension MainController: UICollectionViewDelegate {}
 extension MainController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        if let count = userContributions?.commitHistory.count {
+            return count
+        } else {
+            return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "historyCell", for: indexPath) as? HistoryCell else {
             return UICollectionViewCell()
+        }
+        if let date = userContributions?.commitHistory[indexPath.row].date, let count = userContributions?.commitHistory[indexPath.row].count {
+            cell.dateLabel.text = date
+            cell.contributionsLabel.text = String(count)
         }
         
         return cell
@@ -68,7 +93,9 @@ extension MainController: UICollectionViewDataSource {
             guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "listHeader", for: indexPath) as? ListHeaderView else {
                 return UICollectionReusableView()
             }
-            
+            if let total = userContributions?.total {
+                header.numOfContributes.text = String(total)
+            }
             return header
             
         case UICollectionView.elementKindSectionFooter:
@@ -84,8 +111,8 @@ extension MainController: UICollectionViewDataSource {
 }
 
 class HistoryCell: UICollectionViewCell {
-    @IBOutlet weak var contentsLabel: UILabel!
-    
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var contributionsLabel: UILabel!
 }
 
 class ListHeaderView: UICollectionReusableView {

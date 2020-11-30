@@ -34,20 +34,30 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="contribution contents" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y3a-a3-VTb">
-                                                    <rect key="frame" x="20" y="20" width="163" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="data-date" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y3a-a3-VTb">
+                                                    <rect key="frame" x="20" y="20" width="288" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="commits" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IuD-wU-QZA">
+                                                    <rect key="frame" x="328" y="19.5" width="66" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="IuD-wU-QZA" firstAttribute="leading" secondItem="Y3a-a3-VTb" secondAttribute="trailing" constant="20" id="25V-gZ-D7O"/>
                                                 <constraint firstItem="Y3a-a3-VTb" firstAttribute="centerY" secondItem="PuG-Cq-OUL" secondAttribute="centerY" id="Arp-L6-afJ"/>
                                                 <constraint firstItem="Y3a-a3-VTb" firstAttribute="leading" secondItem="PuG-Cq-OUL" secondAttribute="leading" constant="20" id="Rax-b1-Awz"/>
+                                                <constraint firstItem="IuD-wU-QZA" firstAttribute="centerY" secondItem="PuG-Cq-OUL" secondAttribute="centerY" id="gKG-Or-K20"/>
+                                                <constraint firstAttribute="trailing" secondItem="IuD-wU-QZA" secondAttribute="trailing" constant="20" id="xYb-q5-59e"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <connections>
-                                            <outlet property="contentsLabel" destination="Y3a-a3-VTb" id="0Ag-mG-otp"/>
+                                            <outlet property="contributionsLabel" destination="IuD-wU-QZA" id="DgF-LW-MDu"/>
+                                            <outlet property="dateLabel" destination="Y3a-a3-VTb" id="iFw-2v-ucq"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -55,8 +65,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today 🌈" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o9J-n9-Kah">
-                                            <rect key="frame" x="24" y="21.5" width="108.5" height="32"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total 🌈" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o9J-n9-Kah">
+                                            <rect key="frame" x="24" y="21.5" width="94.5" height="32"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>

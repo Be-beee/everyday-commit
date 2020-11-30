@@ -10,7 +10,7 @@ import UIKit
 struct ClientLogin {
     static let client_id = "da977e2d6b91ad96896f"
     static let client_secret = "5d06d669663255d70e5341f6284c017d582fa240"
-    static let scope = "site_admin user"
+    static let scope = "site_admin repo user" // repo 추가로 더 받기?? 
     static let reqAuthUrl = "https://github.com/login/oauth/authorize"
     static let tokenReqUrl = "https://github.com/login/oauth/access_token"
     static let reqUserInfoUrl = "https://api.github.com/user"
@@ -20,10 +20,10 @@ struct ClientLogin {
 }
 
 enum ParseType {
-    case token, user
+    case token, user, repo
 }
 
-class TokenInfo: Codable {
+struct TokenInfo: Codable {
     var access_token: String
     var scope: String
     var token_type: String
@@ -35,13 +35,12 @@ class TokenInfo: Codable {
     }
 }
 
-class UserInfo: Codable { // 필요하면 데이터를 더 가져올 수 있음
+struct UserInfo: Codable { // 필요하면 데이터를 더 가져올 수 있음
     var login: String
     var name: String
     var avatar_url: String
     var bio: String
     var public_repos: Int
-    var updated_at: String
 }
 
 class UserInfoManager {
@@ -77,6 +76,7 @@ class UserInfoManager {
     }
     
     static func requestInfo(_ request: URLRequest, _ parseType: ParseType, _ completion: @escaping (() -> Void)) {
+        print("networking...")
         let session = URLSession(configuration: .default)
         let dataTask = session.dataTask(with: request) { (data, response, error) in
             let successRange = 200 ..< 300
@@ -88,12 +88,11 @@ class UserInfoManager {
                 
                 guard let token = tokens?.access_token else { return }
                 UserDefaults(suiteName: "group.com.sbk.todaycommit")!.set(token, forKey: "token")
-//                print(token)
                 guard let url = URL(string: ClientLogin.reqUserInfoUrl) else { return }
                 var req = URLRequest(url: url)
                 req.setValue("token \(token)", forHTTPHeaderField: ClientLogin.userInfoHeader.0)
                 requestInfo(req, .user) {}
-            } else {
+            } else if parseType == .user {
                 guard let info = parseUserInfo(resultData) else { return }
                 user = info
                 DispatchQueue.main.async {
@@ -105,6 +104,58 @@ class UserInfoManager {
         dataTask.resume()
     }
 }
+
+typealias UserCommitData = (date: String, count: Int)
+struct UserContributions {
+    var total: Int = 0
+    var commitHistory: [UserCommitData] = []
+}
+
+enum Tag {
+    case h2, rect, none
+}
+
+class ContributionsParser: NSObject, XMLParserDelegate {
+    var userContributions = UserContributions()
+    var tag: Tag = .none
+    var totalString = ""
+    override init() {
+        super.init()
+    }
+    
+    init(data: Data) {
+        super.init()
+        let parser = XMLParser(data: data)
+        parser.delegate = self
+        parser.parse()
+        getTotal()
+    }
+    
+    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+        if elementName == "h2" {
+            tag = .h2
+        } else if elementName == "rect" {
+            tag = .rect
+            if let date = attributeDict["data-date"], let count = attributeDict["data-count"] {
+                let commitData = (date: date, count: Int(count) ?? 0)
+                userContributions.commitHistory.insert(commitData, at: 0)
+            }
+        } else {
+            tag = .none
+        }
+    }
+    func parser(_ parser: XMLParser, foundCharacters string: String) {
+        if tag == .h2 {
+            totalString += string
+        }
+    }
+    
+    func getTotal() {
+        let tmp = totalString.components(separatedBy: " ").filter{ $0 != "" && $0 != "\n" }
+        userContributions.total = Int(tmp[0]) ?? 0
+    }
+}
+
 
 protocol LoginDelegate {
     func loginSucceessed()
