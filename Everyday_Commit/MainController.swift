@@ -39,7 +39,8 @@ class MainController: UIViewController {
         }
     }
     func callCommitData() {
-        guard let contributionsUrl = URL(string: "https://github.com/users/Be-beee/contributions") else { return }
+        guard let id = UserInfoManager.user?.login else { return }
+        guard let contributionsUrl = URL(string: "https://github.com/users/\(id)/contributions") else { return }
         let session = URLSession(configuration: .default)
         let dataTask = session.dataTask(with: contributionsUrl) { (data, response, error) in
             let success = 200 ..< 300
