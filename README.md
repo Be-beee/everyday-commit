@@ -12,8 +12,8 @@
 ## 스크린샷
 
 <div style="text-align: center;">
-	<img src="./screenshots/login.png" width="25%">
-	<img src="./screenshots/main.png" width="25%">
-	<img src="./screenshots/settings.png" width="25%">
-	<img src="./screenshots/widget.png" width="25%">
+	<img src="./screenshots/login.png" width="22%">
+	<img src="./screenshots/main.png" width="22%">
+	<img src="./screenshots/settings.png" width="22%">
+	<img src="./screenshots/widget.png" width="22%">
 </div>
