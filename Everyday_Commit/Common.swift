@@ -95,6 +95,9 @@ class UserInfoManager {
             } else if parseType == .user {
                 guard let info = parseUserInfo(resultData) else { return }
                 user = info
+                if let userDefault = UserDefaults(suiteName: "group.com.sbk.todaycommit"), userDefault.string(forKey: "userID") == nil {
+                    userDefault.set(user?.login, forKey: "userID")
+                }
                 DispatchQueue.main.async {
                     completion()
                 }

@@ -15,7 +15,9 @@ class SettingsController: UIViewController {
     }
     @IBAction func logout(_ sender: Any) {
         UserDefaults(suiteName: "group.com.sbk.todaycommit")?.removeObject(forKey: "token")
-        // 화면 이동하기
+        UserDefaults(suiteName: "group.com.sbk.todaycommit")?.removeObject(forKey: "userID")
+        // 화면 이동하기 - 자동 로그인 되어 있는 상황에서는 해당 메서드가 실행 안됨, 수정하기
         self.performSegue(withIdentifier: "toLogin", sender: self)
+        
     }
 }

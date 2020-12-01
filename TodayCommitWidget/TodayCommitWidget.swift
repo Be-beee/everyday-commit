@@ -8,45 +8,51 @@
 import WidgetKit
 import SwiftUI
 
-class NetworkManager {
-    func fetchData(token: String, completion: @escaping (UserInfo) -> Void) {
-        guard let url = URL(string: "https://api.github.com/user") else {
+class NetworkManager: NSObject, XMLParserDelegate {
+    var userData = UserInfo(id: "None", today_count: 0)
+    init(id: String) {
+        userData.id = id
+    }
+    func fetchData(id: String, completion: @escaping (UserInfo) -> Void) {
+        guard let url = URL(string: "https://github.com/users/\(id)/contributions") else {
             print("Please check URL")
             return
         }
-         
-        var request = URLRequest(url: url)
-        request.setValue("token \(token)", forHTTPHeaderField: "Authorization")
-        let session = URLSession(configuration: .default)
-        let dataTask = session.dataTask(with: request) { data, response, error in
-            let successRange = 200 ..< 300
-            guard error == nil, let statusCode = (response as? HTTPURLResponse)?.statusCode, successRange.contains(statusCode) else { return }
-            if let data = data, let decodedData = try? JSONDecoder().decode(UserInfo.self, from: data) {
-                completion(decodedData)
-                return
+        guard let xmlParser = XMLParser(contentsOf: url) else { return }
+        xmlParser.delegate = self
+        xmlParser.parse()
+        completion(userData)
+    }
+    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+        if elementName == "rect" {
+            let df = DateFormatter()
+            df.dateFormat = "yyyy-MM-dd"
+            let today = df.string(from: Date())
+            if let date = attributeDict["data-date"], let count = attributeDict["data-count"], date == today  {
+                userData.today_count = Int(count) ?? 0
+                parser.abortParsing()
             }
         }
-        dataTask.resume()
     }
 }
 
 struct Provider: TimelineProvider {
-    var networkManager = NetworkManager()
     func placeholder(in context: Context) -> UserEntry {
-        UserEntry(date: Date(), id: "None")
+        UserEntry(date: Date(), today: "0 contributions")
     }
 
     func getSnapshot(in context: Context, completion: @escaping (UserEntry) -> ()) {
-        let entry = UserEntry(date: Date(), id: "None")
+        let entry = UserEntry(date: Date(), today: "0 contributions")
         completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
 
-        if let token = UserDefaults(suiteName: "group.com.sbk.todaycommit")?.string(forKey: "token") {
-            networkManager.fetchData(token: token) { (data) in
+        if let id = UserDefaults(suiteName: "group.com.sbk.todaycommit")?.string(forKey: "userID") {
+            let networkManager = NetworkManager(id: id)
+            networkManager.fetchData(id: id) { (data) in
                 let entries = [
-                    UserEntry(date: Date(), id: data.login)
+                    UserEntry(date: Date(), today: String(data.today_count))
                 ]
                 let timeline = Timeline(entries: entries, policy: .never)
                 completion(timeline)
@@ -56,7 +62,7 @@ struct Provider: TimelineProvider {
             let currentDate = Date()
             for secOffset in 0 ..< 5 {
                 let entryDate = Calendar.current.date(byAdding: .second, value: secOffset, to: currentDate)!
-                let entry = UserEntry(date: entryDate, id: "None")
+                let entry = UserEntry(date: entryDate, today: "0 contributions")
                 entries.append(entry)
             }
 
@@ -68,16 +74,12 @@ struct Provider: TimelineProvider {
 
 struct UserEntry: TimelineEntry {
     let date: Date
-    let id: String
+    let today: String
 }
 
-struct UserInfo: Codable {
-    var login: String
-    var name: String
-    var avatar_url: String
-    var bio: String
-    var public_repos: Int
-    var updated_at: String
+struct UserInfo {
+    var id: String
+    var today_count: Int
 }
 
 struct TodayCommitWidgetEntryView : View {
@@ -85,9 +87,11 @@ struct TodayCommitWidgetEntryView : View {
     @State var user: UserInfo?
 
     var body: some View {
-        if let _ = UserDefaults(suiteName: "group.com.sbk.todaycommit")?.string(forKey: "token") {
+        if let _ = UserDefaults(suiteName: "group.com.sbk.todaycommit")?.string(forKey: "userID") {
             VStack {
-                Text(entry.id)
+                Text("Today's Contributions").bold()
+                Text("")
+                Text("🌳 "+entry.today)
             }
         } else {
             Text("로그인 해주세요!")
@@ -111,7 +115,7 @@ struct TodayCommitWidget: Widget {
 
 struct TodayCommitWidget_Previews: PreviewProvider {
     static var previews: some View {
-        TodayCommitWidgetEntryView(entry: UserEntry(date: Date(), id: "User Id"))
+        TodayCommitWidgetEntryView(entry: UserEntry(date: Date(), today: "# of contributions"))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }
