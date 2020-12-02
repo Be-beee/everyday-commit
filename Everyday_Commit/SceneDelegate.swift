@@ -13,20 +13,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let scene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(windowScene: scene)
-        
-        if let token = UserDefaults(suiteName: "group.com.sbk.todaycommit")?.string(forKey: "token") {
-            print(token)
-            guard let url = URL(string: ClientLogin.reqUserInfoUrl) else { return }
-            var req = URLRequest(url: url)
-            req.setValue("token \(token)", forHTTPHeaderField: ClientLogin.userInfoHeader.0)
-            UserInfoManager.requestInfo(req, .user){
-                self.startWithMainView()
-            }
-        } else {
-            startWithLoginView()
-        }
         
     }
 
@@ -79,19 +65,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             // code를 활용해 URLSession 후 UserInfo에 값 입력
         }
     }
-    
-    func startWithLoginView() {
-        guard let loginVC = UIStoryboard(name: "LoginController", bundle: nil).instantiateViewController(withIdentifier: "LoginNavVC") as? UINavigationController else { return }
-        window?.rootViewController = loginVC
-        window?.makeKeyAndVisible()
-    }
-    
-    func startWithMainView() {
-        guard let mainVC = UIStoryboard(name: "MainController", bundle: nil).instantiateViewController(withIdentifier: "MainTabVC") as? UITabBarController else { return }
-        window?.rootViewController = mainVC
-        window?.makeKeyAndVisible()
-    }
-
-
 }
 

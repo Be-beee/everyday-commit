@@ -7,8 +7,6 @@
 
 import UIKit
 
-// 참고: https://docs.github.com/en/enterprise-server@2.21/developers/apps/authorizing-oauth-apps
-
 class LoginController: UIViewController {
     
     override func viewDidLoad() {
@@ -18,8 +16,6 @@ class LoginController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-    
-    @IBAction func unwindToLogin(sender: UIStoryboardSegue) {}
 
     @IBAction func loginGithub(_ sender: UIButton) {
         let clientID = ClientLogin.client_id
@@ -41,8 +37,7 @@ class LoginController: UIViewController {
 extension LoginController: LoginDelegate {
     func loginSucceessed() {
         DispatchQueue.main.async {
-            guard let mainVC = UIStoryboard(name: "MainController", bundle: nil).instantiateViewController(withIdentifier: "MainTabVC") as? UITabBarController else { return }
-            self.navigationController?.pushViewController(mainVC, animated: true)
+            self.dismiss(animated: true, completion: nil)
         }
     }
 }

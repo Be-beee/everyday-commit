@@ -17,13 +17,38 @@ class MainController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         userImg.layer.cornerRadius = userImg.frame.height/2
-
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         if let id = UserInfoManager.user?.login, let img = UserInfoManager.user?.avatar_url {
             userId.text = id
             userImg.image = urlToImage(from: img)
             callCommitData()
+        } else if let token = UserDefaults(suiteName: "group.com.sbk.todaycommit")?.string(forKey: "token") {
+            print(token)
+            guard let url = URL(string: ClientLogin.reqUserInfoUrl) else { return }
+            var req = URLRequest(url: url)
+            req.setValue("token \(token)", forHTTPHeaderField: ClientLogin.userInfoHeader.0)
+            UserInfoManager.requestInfo(req, .user){
+                // 네트워킹 후 라벨 표시
+                if let id = UserInfoManager.user?.login, let img = UserInfoManager.user?.avatar_url {
+                    self.userId.text = id
+                    self.userImg.image = self.urlToImage(from: img)
+                    self.callCommitData()
+                }
+            }
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if UserDefaults(suiteName: "group.com.sbk.todaycommit")?.string(forKey: "token") == nil {
+            guard let loginVC = UIStoryboard(name: "LoginController", bundle: nil).instantiateViewController(withIdentifier: "LoginVC") as? LoginController else { return }
+            loginVC.modalPresentationStyle = .fullScreen
+            self.present(loginVC, animated: false, completion: nil)
         }
     }
     
