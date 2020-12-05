@@ -10,6 +10,7 @@ import UIKit
 class MainController: UIViewController {
 
     var userContributions: UserContributions?
+    var themeDataManager = ThemeDataManager()
     @IBOutlet weak var commitHistoryView: UICollectionView!
     
     @IBOutlet weak var userId: UILabel!
@@ -23,6 +24,10 @@ class MainController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        if let color = UserDefaults.shared?.string(forKey: "color") {
+            view.backgroundColor = themeDataManager.themeColorDict[color]
+            self.tabBarController?.tabBar.tintColor = themeDataManager.themeColorDict[color]
+        }
         if let id = UserInfoManager.user?.login, let img = UserInfoManager.user?.avatar_url {
             userId.text = id
             userImg.image = urlToImage(from: img)
@@ -105,9 +110,15 @@ extension MainController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "historyCell", for: indexPath) as? HistoryCell else {
             return UICollectionViewCell()
         }
-        if let date = userContributions?.commitHistory[indexPath.row].date, let count = userContributions?.commitHistory[indexPath.row].count {
+        if let date = userContributions?.commitHistory[indexPath.row].date, let count = userContributions?.commitHistory[indexPath.row].count, let score = userContributions?.commitHistory[indexPath.row].score {
             cell.dateLabel.text = date
-            cell.contributionsLabel.text = String(count)
+            
+            if let emojis = UserDefaults.shared?.stringArray(forKey: "emoji") {
+                cell.contributionsLabel.text = emojis[score]+" "+String(count)
+            } else {
+                let defaults = themeDataManager.emoji[0].split(separator: " ").map{ String($0) }
+                cell.contributionsLabel.text = defaults[score]+" "+String(count)
+            }
         }
         
         return cell
@@ -120,7 +131,7 @@ extension MainController: UICollectionViewDataSource {
                 return UICollectionReusableView()
             }
             if let total = userContributions?.total {
-                header.numOfContributes.text = String(total)
+                header.numOfContributes.text = String(total)+" contributions"
             }
             return header
             

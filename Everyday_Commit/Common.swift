@@ -115,7 +115,12 @@ class UserInfoManager {
     }
 }
 
-typealias UserCommitData = (date: String, count: Int)
+//typealias UserCommitData = (date: String, count: Int)
+struct UserCommitData {
+    var date: String = "yyyy-MM-dd"
+    var count = 0
+    var score = 0
+}
 struct UserContributions {
     var total: Int = 0
     var commitHistory: [UserCommitData] = []
@@ -146,8 +151,15 @@ class ContributionsParser: NSObject, XMLParserDelegate {
             tag = .h2
         } else if elementName == "rect" {
             tag = .rect
-            if let date = attributeDict["data-date"], let count = attributeDict["data-count"] {
-                let commitData = (date: date, count: Int(count) ?? 0)
+            if let date = attributeDict["data-date"], let count = attributeDict["data-count"], let score = attributeDict["fill"] {
+                var commitData = UserCommitData(date: date, count: Int(count) ?? 0, score: 0)
+                if score.contains("L1") {
+                    commitData.score = 1
+                } else if score.contains("L2") {
+                    commitData.score = 2
+                } else if score.contains("L3") || score.contains("L4") {
+                    commitData.score = 3
+                }
                 userContributions.commitHistory.insert(commitData, at: 0)
             }
         } else {

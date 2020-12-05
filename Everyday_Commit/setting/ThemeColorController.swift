@@ -9,10 +9,16 @@ import UIKit
 
 class ThemeColorController: UIViewController {
     
+    @IBOutlet weak var confirmButton: UIButton!
     var themeDataManager = ThemeDataManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let txt = UserDefaults.shared?.string(forKey: "color") {
+            confirmButton.setTitleColor(themeDataManager.themeColorDict[txt], for: .normal)
+        } else {
+            confirmButton.setTitleColor(UIColor.systemGreen, for: .normal)
+        }
     }
     
     @IBAction func closeThemeVC(_ sender: UIButton) {
@@ -58,8 +64,8 @@ extension ThemeColorController: UITableViewDelegate, UITableViewDataSource {
         }
         switch indexPath.section {
         case 0:
-            let txt = themeDataManager.themeColor[indexPath.row].title
-            let color = themeDataManager.themeColor[indexPath.row].value
+            let txt = themeDataManager.themeColor[indexPath.row]
+            guard let color = themeDataManager.themeColorDict[txt] else { return cell }
             cell.titleLabel.attributedText = NSAttributedString(string: txt, attributes: [.foregroundColor : color])
             cell.selectedLabel.isHidden = true
         case 1:
@@ -75,7 +81,9 @@ extension ThemeColorController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let section = indexPath.section
         if section == 0 {
-            UserDefaults.shared?.set(themeDataManager.themeColor[indexPath.row].title, forKey: "color")
+            let txt = themeDataManager.themeColor[indexPath.row]
+            UserDefaults.shared?.set(txt, forKey: "color")
+            self.confirmButton.setTitleColor(themeDataManager.themeColorDict[txt], for: .normal)
         } else {
             let emojis = themeDataManager.emoji[indexPath.row].split(separator: " ").map{ String($0) }
             UserDefaults.shared?.set(emojis, forKey: "emoji")
@@ -91,7 +99,14 @@ class ThemeCell: UITableViewCell {
 }
 
 class ThemeDataManager {
-    var themeColor = [(title: "Green", value: UIColor.systemGreen), (title: "Orange", value: UIColor.systemOrange), (title: "Pink", value: UIColor.systemPink), (title: "Blue", value: UIColor.systemBlue), (title: "Indigo", value: UIColor.systemIndigo), (title: "Dark Gray", value: UIColor.darkGray)]
+    var themeColorDict = [
+        "Green": UIColor.systemGreen,
+        "Orange": UIColor.systemOrange,
+        "Pink": UIColor.systemPink,
+        "Blue": UIColor.systemBlue,
+        "Indigo": UIColor.systemIndigo,
+        "Dark Gray": UIColor.darkGray
+    ]
     var emoji = ["🕸 🌱 🌿 🌳", "😢 ☺️ 😆 😍", "💔 💛 🧡 ❤️", "🥉 🥈 🥇 🎖", "💥 ⭐️ 💫 ✨"]
     
     var colorListCount: Int {
@@ -99,5 +114,14 @@ class ThemeDataManager {
     }
     var emojiListCount: Int {
         return emoji.count
+    }
+    
+    var themeColor: [String] {
+        var arr: [String] = []
+        let sorted = themeColorDict.sorted { $0.key < $1.key }
+        for (key, _) in sorted {
+            arr.append(key)
+        }
+        return arr
     }
 }
