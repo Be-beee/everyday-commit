@@ -19,6 +19,13 @@ struct ClientLogin {
     
 }
 
+extension UserDefaults {
+    static var shared: UserDefaults? {
+        let shared = UserDefaults(suiteName: "group.com.sbk.todaycommit")
+        return shared
+    }
+}
+
 enum ParseType {
     case token, user, repo
 }
@@ -87,7 +94,7 @@ class UserInfoManager {
                 tokens = info
                 
                 guard let token = tokens?.access_token else { return }
-                UserDefaults(suiteName: "group.com.sbk.todaycommit")!.set(token, forKey: "token")
+                UserDefaults.shared?.set(token, forKey: "token")
                 guard let url = URL(string: ClientLogin.reqUserInfoUrl) else { return }
                 var req = URLRequest(url: url)
                 req.setValue("token \(token)", forHTTPHeaderField: ClientLogin.userInfoHeader.0)
@@ -95,7 +102,7 @@ class UserInfoManager {
             } else if parseType == .user {
                 guard let info = parseUserInfo(resultData) else { return }
                 user = info
-                if let userDefault = UserDefaults(suiteName: "group.com.sbk.todaycommit"), userDefault.string(forKey: "userID") == nil {
+                if let userDefault = UserDefaults.shared, userDefault.string(forKey: "userID") == nil {
                     userDefault.set(user?.login, forKey: "userID")
                 }
                 DispatchQueue.main.async {

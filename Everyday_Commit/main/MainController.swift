@@ -27,7 +27,7 @@ class MainController: UIViewController {
             userId.text = id
             userImg.image = urlToImage(from: img)
             callCommitData()
-        } else if let token = UserDefaults(suiteName: "group.com.sbk.todaycommit")?.string(forKey: "token") {
+        } else if let token = UserDefaults.shared?.string(forKey: "token") {
             print(token)
             guard let url = URL(string: ClientLogin.reqUserInfoUrl) else { return }
             var req = URLRequest(url: url)
@@ -45,7 +45,7 @@ class MainController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if UserDefaults(suiteName: "group.com.sbk.todaycommit")?.string(forKey: "token") == nil {
+        if UserDefaults.shared?.string(forKey: "token") == nil {
             guard let loginVC = UIStoryboard(name: "LoginController", bundle: nil).instantiateViewController(withIdentifier: "LoginVC") as? LoginController else { return }
             loginVC.modalPresentationStyle = .fullScreen
             self.present(loginVC, animated: false, completion: nil)

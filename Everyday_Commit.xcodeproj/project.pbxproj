@@ -23,6 +23,8 @@
 		B596A3C1255BBAE900E540A5 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B596A3C0255BBAE900E540A5 /* SettingsController.swift */; };
 		B5A7D350256B84B7002E33A9 /* UserDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A7D34F256B84B7002E33A9 /* UserDetailController.swift */; };
 		B5A7D354256B84CA002E33A9 /* UserDetailController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5A7D353256B84CA002E33A9 /* UserDetailController.storyboard */; };
+		B5BC21DE257A645A002A02AB /* ThemeColorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BC21DD257A645A002A02AB /* ThemeColorController.swift */; };
+		B5BC21E2257A651E002A02AB /* ThemeColorController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5BC21E1257A651E002A02AB /* ThemeColorController.storyboard */; };
 		B5C9EC49255A5D850074AF53 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C9EC48255A5D850074AF53 /* MainController.swift */; };
 		B5C9EC4D255A5DE90074AF53 /* MainController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5C9EC4C255A5DE90074AF53 /* MainController.storyboard */; };
 /* End PBXBuildFile section */
@@ -73,6 +75,8 @@
 		B596A3C0255BBAE900E540A5 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		B5A7D34F256B84B7002E33A9 /* UserDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailController.swift; sourceTree = "<group>"; };
 		B5A7D353256B84CA002E33A9 /* UserDetailController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserDetailController.storyboard; sourceTree = "<group>"; };
+		B5BC21DD257A645A002A02AB /* ThemeColorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColorController.swift; sourceTree = "<group>"; };
+		B5BC21E1257A651E002A02AB /* ThemeColorController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ThemeColorController.storyboard; sourceTree = "<group>"; };
 		B5C9EC48255A5D850074AF53 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		B5C9EC4C255A5DE90074AF53 /* MainController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainController.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -178,6 +182,8 @@
 				B54B7D832567FB4B00228DD8 /* SettingsListController.swift */,
 				B5A7D34F256B84B7002E33A9 /* UserDetailController.swift */,
 				B5A7D353256B84CA002E33A9 /* UserDetailController.storyboard */,
+				B5BC21DD257A645A002A02AB /* ThemeColorController.swift */,
+				B5BC21E1257A651E002A02AB /* ThemeColorController.storyboard */,
 			);
 			path = setting;
 			sourceTree = "<group>";
@@ -264,6 +270,7 @@
 			files = (
 				B50A06F425590A80002DB64C /* LaunchScreen.storyboard in Resources */,
 				B5C9EC4D255A5DE90074AF53 /* MainController.storyboard in Resources */,
+				B5BC21E2257A651E002A02AB /* ThemeColorController.storyboard in Resources */,
 				B50A06F125590A80002DB64C /* Assets.xcassets in Resources */,
 				B5A7D354256B84CA002E33A9 /* UserDetailController.storyboard in Resources */,
 				B50A06EF25590A80002DB64C /* LoginController.storyboard in Resources */,
@@ -290,6 +297,7 @@
 				B50A06EC25590A80002DB64C /* LoginController.swift in Sources */,
 				B5A7D350256B84B7002E33A9 /* UserDetailController.swift in Sources */,
 				B54B7D842567FB4B00228DD8 /* SettingsListController.swift in Sources */,
+				B5BC21DE257A645A002A02AB /* ThemeColorController.swift in Sources */,
 				B50A06E825590A80002DB64C /* AppDelegate.swift in Sources */,
 				B50A06EA25590A80002DB64C /* SceneDelegate.swift in Sources */,
 				B5C9EC49255A5D850074AF53 /* MainController.swift in Sources */,

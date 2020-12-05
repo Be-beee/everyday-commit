@@ -8,6 +8,13 @@
 import WidgetKit
 import SwiftUI
 
+extension UserDefaults {
+    static var shared: UserDefaults? {
+        let shared = UserDefaults(suiteName: "group.com.sbk.todaycommit")
+        return shared
+    }
+}
+
 class ParserManager: NSObject, XMLParserDelegate {
     var userData = UserInfo(id: "None", today_count: 0, score: 0)
     init(id: String) {
@@ -68,7 +75,7 @@ struct Provider: TimelineProvider {
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
 
-        if let id = UserDefaults(suiteName: "group.com.sbk.todaycommit")?.string(forKey: "userID") {
+        if let id = UserDefaults.shared?.string(forKey: "userID") {
             let parserManager = ParserManager(id: id)
             parserManager.fetchData(id: id) { (data) in
                 var entries: [UserEntry] = []
@@ -102,38 +109,56 @@ struct TodayCommitWidgetEntryView : View {
     var entry: Provider.Entry
     var emoji: String {
         var emoji = ""
-        switch entry.score {
-        case 0:
-            emoji = "🕸"
-        case 1:
-            emoji = "🌱"
-        case 2:
-            emoji = "🌿"
-        case 3:
-            emoji = "🌳"
-        default:
-            emoji = "🕸"
+        if let emojiArray = UserDefaults.shared?.stringArray(forKey: "emoji") {
+            emoji = emojiArray[entry.score]
+        } else {
+            let defaults = ["🕸", "🌱", "🌿", "🌳"]
+            emoji = defaults[entry.score]
         }
         return emoji
     }
-
+    var txtColor: Color {
+        var colorData = Color(UIColor.systemGreen)
+        if let txtColor = UserDefaults.shared?.string(forKey: "color") {
+            switch txtColor {
+            case "Green":
+                colorData = Color(UIColor.systemGreen)
+            case "Orange":
+                colorData = Color(UIColor.systemOrange)
+            case "Pink":
+                colorData = Color(UIColor.systemPink)
+            case "Blue":
+                colorData = Color(UIColor.systemBlue)
+            case "Indigo":
+                colorData = Color(UIColor.systemIndigo)
+            case "Dark Gray":
+                colorData = Color(UIColor.darkGray)
+            default:
+                break
+            }
+        }
+        return colorData
+    }
+    
+    
     var body: some View {
-        if let _ = UserDefaults(suiteName: "group.com.sbk.todaycommit")?.string(forKey: "userID") {
+        if let _ = UserDefaults.shared?.string(forKey: "userID") {
             switch widgetFamily {
             case .systemSmall:
                 VStack {
                     Text("Today's Contributions")
                         .bold()
+                        .foregroundColor(txtColor)
                     Text("")
                     Text(emoji+" "+entry.today)
                 }
-            case .systemMedium:
-                VStack {
-                    Text("Today's Contributions")
-                        .font(.subheadline)
-                        .padding()
-                    Text(emoji+" "+entry.today)
-                }
+//            case .systemMedium:
+//                VStack {
+//                    Text("Today's Contributions")
+//                        .font(.subheadline)
+//                        .padding()
+//                    Text(emoji+" "+entry.today)
+//                }
             default:
                 Text("Default")
             }
@@ -154,7 +179,7 @@ struct TodayCommitWidget: Widget {
         }
         .configurationDisplayName("My Widget")
         .description("This is an example widget.")
-        .supportedFamilies([.systemSmall, .systemMedium])
+        .supportedFamilies([.systemSmall])
     }
 }
 
