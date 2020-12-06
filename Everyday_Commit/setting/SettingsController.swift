@@ -11,7 +11,7 @@ class SettingsController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setLightModeOnly()
     }
     @IBAction func logout(_ sender: Any) {
         let alert = UIAlertController(title: "알림", message: "로그아웃하시겠습니까?", preferredStyle: .alert)

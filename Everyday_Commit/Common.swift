@@ -178,6 +178,12 @@ class ContributionsParser: NSObject, XMLParserDelegate {
     }
 }
 
+extension UIViewController {
+    func setLightModeOnly() {
+        overrideUserInterfaceStyle = .light
+    }
+}
+
 
 protocol LoginDelegate {
     func loginSucceessed()

@@ -19,6 +19,7 @@ class MainController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         userImg.layer.cornerRadius = userImg.frame.height/2
+        setLightModeOnly()
     }
     
     override func viewWillAppear(_ animated: Bool) {

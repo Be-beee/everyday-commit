@@ -19,6 +19,7 @@ class ThemeColorController: UIViewController {
         } else {
             confirmButton.setTitleColor(UIColor.systemGreen, for: .normal)
         }
+        setLightModeOnly()
     }
     
     @IBAction func closeThemeVC(_ sender: UIButton) {

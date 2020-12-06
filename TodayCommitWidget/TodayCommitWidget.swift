@@ -145,12 +145,16 @@ struct TodayCommitWidgetEntryView : View {
         if let _ = UserDefaults.shared?.string(forKey: "userID") {
             switch widgetFamily {
             case .systemSmall:
-                VStack {
-                    Text("Today's Contributions")
-                        .bold()
-                        .foregroundColor(txtColor)
-                    Text("")
-                    Text(emoji+" "+entry.today)
+                ZStack {
+                    Color(.white)
+                    VStack {
+                        Text("Today's Contributions")
+                            .bold()
+                            .foregroundColor(txtColor)
+                        Text("")
+                        Text(emoji+" "+entry.today)
+                            .foregroundColor(.black)
+                    }
                 }
 //            case .systemMedium:
 //                VStack {

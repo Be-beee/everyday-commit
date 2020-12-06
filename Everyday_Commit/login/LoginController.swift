@@ -11,7 +11,7 @@ class LoginController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setLightModeOnly()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

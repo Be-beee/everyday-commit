@@ -20,6 +20,7 @@ class UserDetailController: UIViewController {
         }
         userIdLabel.text = UserInfoManager.user?.login
         userDescriptionLabel.text = UserInfoManager.user?.bio
+        setLightModeOnly()
     }
     func urlToImage(from url: String) -> UIImage? {
         if let url = URL(string: url) {
