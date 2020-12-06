@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class MainController: UIViewController {
 
@@ -101,6 +102,9 @@ extension MainController: UICollectionViewDelegate {}
 extension MainController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let count = userContributions?.commitHistory.count {
+            if count >= 10 {
+                return 10
+            }
             return count
         } else {
             return 0
@@ -140,11 +144,19 @@ extension MainController: UICollectionViewDataSource {
             guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "listFooter", for: indexPath) as? ListFooterView else {
                 return UICollectionReusableView()
             }
+            footer.moreButton.addTarget(self, action: #selector(showMoreContributions), for: .touchUpInside)
             
             return footer
         default:
             return UICollectionReusableView()
         }
+    }
+    
+    @objc func showMoreContributions() {
+        guard let id = UserInfoManager.user?.login else { return }
+        guard let url = URL(string: "https://github.com/\(id)") else { return }
+        let safariVC = SFSafariViewController(url: url)
+        self.present(safariVC, animated: true, completion: nil)
     }
 }
 
@@ -163,12 +175,9 @@ class ListHeaderView: UICollectionReusableView {
 }
 
 class ListFooterView: UICollectionReusableView {
+    @IBOutlet weak var moreButton: UIButton!
     
     override class func awakeFromNib() {
         super.awakeFromNib()
     }
-    
-    @IBAction func showMoreContributions(_ sender: UIButton) {
-    }
-    
 }

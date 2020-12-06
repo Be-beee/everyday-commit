@@ -48,6 +48,11 @@ struct UserInfo: Codable { // 필요하면 데이터를 더 가져올 수 있음
     var avatar_url: String
     var bio: String
     var public_repos: Int
+    var company: String?
+    var location: String?
+    var email: String?
+    var blog: String?
+    var twitter_username: String?
 }
 
 class UserInfoManager {

@@ -94,19 +94,19 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZ9-DZ-BqS">
-                                            <rect key="frame" x="132" y="10" width="150" height="30"/>
-                                            <state key="normal" title="show all contributions">
+                                            <rect key="frame" x="122" y="10" width="170" height="30"/>
+                                            <state key="normal" title="show more contributions">
                                                 <color key="titleColor" systemColor="systemGray2Color"/>
                                             </state>
-                                            <connections>
-                                                <action selector="showMoreContributions:" destination="QSC-do-Bcn" eventType="touchUpInside" id="gtf-Q5-xVp"/>
-                                            </connections>
                                         </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="fZ9-DZ-BqS" firstAttribute="centerX" secondItem="QSC-do-Bcn" secondAttribute="centerX" id="3Xe-Up-tOT"/>
                                         <constraint firstItem="fZ9-DZ-BqS" firstAttribute="centerY" secondItem="QSC-do-Bcn" secondAttribute="centerY" id="afY-w0-D6m"/>
                                     </constraints>
+                                    <connections>
+                                        <outlet property="moreButton" destination="fZ9-DZ-BqS" id="szs-gu-XYm"/>
+                                    </connections>
                                 </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="6ez-sK-KF5" id="v5l-AQ-MMh"/>

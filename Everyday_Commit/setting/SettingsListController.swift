@@ -19,6 +19,7 @@ class SettingsListController: UITableViewController {
         switch indexPath.section {
         case 0:
             guard let userDetailVC = UIStoryboard(name: "UserDetailController", bundle: nil).instantiateViewController(withIdentifier: "UserDetailController") as? UserDetailController else { return }
+            userDetailVC.modalPresentationStyle = .fullScreen
             self.present(userDetailVC, animated: true, completion: nil)
         case 1:
             if indexPath.row == 0 {

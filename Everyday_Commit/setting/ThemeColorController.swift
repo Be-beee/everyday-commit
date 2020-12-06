@@ -68,10 +68,18 @@ extension ThemeColorController: UITableViewDelegate, UITableViewDataSource {
             let txt = themeDataManager.themeColor[indexPath.row]
             guard let color = themeDataManager.themeColorDict[txt] else { return cell }
             cell.titleLabel.attributedText = NSAttributedString(string: txt, attributes: [.foregroundColor : color])
-            cell.selectedLabel.isHidden = true
+            if let cellText = cell.titleLabel.text, cellText == themeDataManager.selectedColor {
+                cell.selectedLabel.isHidden = false
+            } else {
+                cell.selectedLabel.isHidden = true
+            }
         case 1:
             cell.titleLabel.text = themeDataManager.emoji[indexPath.row]
-            cell.selectedLabel.isHidden = true
+            if let cellText = cell.titleLabel.text, cellText == themeDataManager.selectedEmoji {
+                cell.selectedLabel.isHidden = false
+            } else {
+                cell.selectedLabel.isHidden = true
+            }
         default:
             break
         }
@@ -89,6 +97,7 @@ extension ThemeColorController: UITableViewDelegate, UITableViewDataSource {
             let emojis = themeDataManager.emoji[indexPath.row].split(separator: " ").map{ String($0) }
             UserDefaults.shared?.set(emojis, forKey: "emoji")
         }
+        tableView.reloadData()
     }
     
 }
@@ -116,6 +125,21 @@ class ThemeDataManager {
     var emojiListCount: Int {
         return emoji.count
     }
+    
+    var selectedColor: String {
+        if let data = UserDefaults.shared?.string(forKey: "color") {
+            return data
+        } else {
+            return "Green"
+        }
+    } // default: green
+    var selectedEmoji: String {
+        if let data = UserDefaults.shared?.stringArray(forKey: "emoji") {
+            return data.joined(separator: " ")
+        } else {
+            return emoji[0]
+        }
+    } // default: nature
     
     var themeColor: [String] {
         var arr: [String] = []
