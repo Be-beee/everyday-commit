@@ -8,11 +8,21 @@
 import UIKit
 
 class SettingsController: UIViewController {
+    
+    var themeDataManager = ThemeDataManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setLightModeOnly()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let color = UserDefaults.shared?.string(forKey: "color") {
+            view.backgroundColor = themeDataManager.themeColorDict[color]
+            self.tabBarController?.tabBar.tintColor = themeDataManager.themeColorDict[color]
+        }
+    }
+    
     @IBAction func logout(_ sender: Any) {
         let alert = UIAlertController(title: "알림", message: "로그아웃하시겠습니까?", preferredStyle: .alert)
         let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)

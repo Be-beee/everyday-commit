@@ -181,46 +181,58 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ht3-nr-ywg">
-                                <rect key="frame" x="20" y="74" width="81.5" height="27"/>
+                                <rect key="frame" x="20" y="74" width="82" height="27"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zEZ-AG-t3y">
-                                <rect key="frame" x="0.0" y="111" width="414" height="270"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="03J-Kh-0fw">
+                                <rect key="frame" x="0.0" y="138" width="414" height="675"/>
+                                <subviews>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zEZ-AG-t3y">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="270"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="270" id="ONI-Xa-QmI"/>
+                                        </constraints>
+                                        <connections>
+                                            <segue destination="Uyv-gw-t0d" kind="embed" id="QIs-oS-FiZ"/>
+                                        </connections>
+                                    </containerView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j2w-7g-qcy">
+                                        <rect key="frame" x="0.0" y="280" width="414" height="50"/>
+                                        <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="NXm-vO-BSR"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="로그아웃">
+                                            <color key="titleColor" systemColor="systemRedColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="logout:" destination="MGO-qS-qdi" eventType="touchUpInside" id="xXU-DP-gb2"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="270" id="ONI-Xa-QmI"/>
+                                    <constraint firstItem="j2w-7g-qcy" firstAttribute="top" secondItem="zEZ-AG-t3y" secondAttribute="bottom" constant="10" id="4CU-aP-bue"/>
+                                    <constraint firstItem="zEZ-AG-t3y" firstAttribute="top" secondItem="03J-Kh-0fw" secondAttribute="top" id="Dfq-7i-sa6"/>
+                                    <constraint firstItem="zEZ-AG-t3y" firstAttribute="leading" secondItem="03J-Kh-0fw" secondAttribute="leading" id="Een-TD-SZz"/>
+                                    <constraint firstItem="j2w-7g-qcy" firstAttribute="leading" secondItem="03J-Kh-0fw" secondAttribute="leading" id="Gj9-Zb-w1I"/>
+                                    <constraint firstAttribute="trailing" secondItem="j2w-7g-qcy" secondAttribute="trailing" id="hRg-GR-anf"/>
+                                    <constraint firstAttribute="trailing" secondItem="zEZ-AG-t3y" secondAttribute="trailing" id="uDs-P5-o1g"/>
                                 </constraints>
-                                <connections>
-                                    <segue destination="Uyv-gw-t0d" kind="embed" id="QIs-oS-FiZ"/>
-                                </connections>
-                            </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j2w-7g-qcy">
-                                <rect key="frame" x="0.0" y="391" width="414" height="50"/>
-                                <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="NXm-vO-BSR"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="로그아웃">
-                                    <color key="titleColor" systemColor="systemRedColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="logout:" destination="MGO-qS-qdi" eventType="touchUpInside" id="xXU-DP-gb2"/>
-                                </connections>
-                            </button>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="EnB-Et-6Lr"/>
-                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor"/>
                         <constraints>
-                            <constraint firstItem="EnB-Et-6Lr" firstAttribute="trailing" secondItem="j2w-7g-qcy" secondAttribute="trailing" id="9jk-fD-128"/>
-                            <constraint firstItem="EnB-Et-6Lr" firstAttribute="trailing" secondItem="zEZ-AG-t3y" secondAttribute="trailing" id="B6M-ZB-wvW"/>
-                            <constraint firstItem="zEZ-AG-t3y" firstAttribute="leading" secondItem="EnB-Et-6Lr" secondAttribute="leading" id="KzI-dC-6vj"/>
+                            <constraint firstItem="03J-Kh-0fw" firstAttribute="top" secondItem="Ht3-nr-ywg" secondAttribute="bottom" constant="37" id="Eyz-6W-Pou"/>
+                            <constraint firstAttribute="trailing" secondItem="03J-Kh-0fw" secondAttribute="trailing" id="LNx-L3-efa"/>
                             <constraint firstItem="Ht3-nr-ywg" firstAttribute="leading" secondItem="EnB-Et-6Lr" secondAttribute="leading" constant="20" id="Oe8-EN-ZKN"/>
-                            <constraint firstItem="zEZ-AG-t3y" firstAttribute="top" secondItem="Ht3-nr-ywg" secondAttribute="bottom" constant="10" id="RjC-VO-byY"/>
-                            <constraint firstItem="j2w-7g-qcy" firstAttribute="top" secondItem="zEZ-AG-t3y" secondAttribute="bottom" constant="10" id="UMG-rC-GqW"/>
+                            <constraint firstItem="03J-Kh-0fw" firstAttribute="leading" secondItem="rZD-W2-QVq" secondAttribute="leading" id="QkK-p0-4lV"/>
                             <constraint firstItem="Ht3-nr-ywg" firstAttribute="top" secondItem="EnB-Et-6Lr" secondAttribute="top" constant="30" id="YSB-r9-1Bf"/>
-                            <constraint firstItem="j2w-7g-qcy" firstAttribute="leading" secondItem="EnB-Et-6Lr" secondAttribute="leading" id="hlb-dg-5LB"/>
+                            <constraint firstItem="EnB-Et-6Lr" firstAttribute="bottom" secondItem="03J-Kh-0fw" secondAttribute="bottom" id="cag-9L-3YU"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="gearshape" catalog="system" id="4DO-y7-QWZ"/>
@@ -339,14 +351,14 @@
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-        <systemColor name="systemGroupedBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiarySystemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tertiarySystemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -15,6 +15,18 @@ extension UserDefaults {
     }
 }
 
+struct ThemeData {
+    static let defaultEmoji = ["🕸", "🌱", "🌿", "🌳"]
+    static let defaultColor = [
+        "Green": Color(UIColor.systemGreen),
+        "Orange": Color(UIColor.systemOrange),
+        "Pink": Color(UIColor.systemPink),
+        "Blue": Color(UIColor.systemBlue),
+        "Indigo": Color(UIColor.systemIndigo),
+        "Dark Gray": Color(UIColor.darkGray)
+    ]
+}
+
 class ParserManager: NSObject, XMLParserDelegate {
     var userData = UserInfo(id: "None", today_count: 0, score: 0)
     init(id: String) {
@@ -74,24 +86,32 @@ struct Provider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-
+        let currentDate = Date()
+        
         if let id = UserDefaults.shared?.string(forKey: "userID") {
             let parserManager = ParserManager(id: id)
             parserManager.fetchData(id: id) { (data) in
-                var entries: [UserEntry] = []
-                for minOffset in 0 ..< 2 {
-                    let entryDate = Calendar.current.date(byAdding: .minute, value: minOffset, to: Date())!
-                    let entry = UserEntry(date: entryDate, today: String(data.today_count), score: data.score)
-                    entries.append(entry)
-                }
+                let entries = addEntries(currentDate, String(data.today_count), data.score)
                 let timeline = Timeline(entries: entries, policy: .atEnd)
                 completion(timeline)
             }
         } else {
-            let entries: [UserEntry] = [UserEntry(date: Date(), today: "0 contributions", score: 0)]
-            let timeline = Timeline(entries: entries, policy: .never)
+            let entries: [UserEntry] = addEntries(currentDate, "0", 0)
+            let timeline = Timeline(entries: entries, policy: .atEnd)
             completion(timeline)
         }
+    }
+    
+    func addEntries(_ currentDate: Date, _ today: String, _ score: Int) -> [UserEntry] {
+        var result: [UserEntry] = []
+        for offset in 0 ..< 2 {
+            let entryDate = Calendar.current.date(byAdding: .second, value: offset, to: currentDate)!
+            let entry = UserEntry(date: entryDate, today: today, score: score)
+            result.append(entry)
+            // entry update delay issue
+        }
+        
+        return result
     }
 }
 
@@ -99,6 +119,22 @@ struct UserEntry: TimelineEntry {
     let date: Date
     let today: String
     let score: Int
+    var emoji: String {
+        var emoji = ""
+        if let emojiArray = UserDefaults.shared?.stringArray(forKey: "emoji") {
+            emoji = emojiArray[score]
+        } else {
+            emoji = ThemeData.defaultEmoji[score]
+        }
+        return emoji
+    }
+    var txtColor: Color {
+        var colorData = Color(UIColor.systemGreen)
+        if let txtColor = UserDefaults.shared?.string(forKey: "color") {
+            colorData = ThemeData.defaultColor[txtColor] ?? Color(UIColor.systemGreen)
+        }
+        return colorData
+    }
 }
 
 
@@ -107,38 +143,7 @@ struct TodayCommitWidgetEntryView : View {
     @State var user: UserInfo?
     
     var entry: Provider.Entry
-    var emoji: String {
-        var emoji = ""
-        if let emojiArray = UserDefaults.shared?.stringArray(forKey: "emoji") {
-            emoji = emojiArray[entry.score]
-        } else {
-            let defaults = ["🕸", "🌱", "🌿", "🌳"]
-            emoji = defaults[entry.score]
-        }
-        return emoji
-    }
-    var txtColor: Color {
-        var colorData = Color(UIColor.systemGreen)
-        if let txtColor = UserDefaults.shared?.string(forKey: "color") {
-            switch txtColor {
-            case "Green":
-                colorData = Color(UIColor.systemGreen)
-            case "Orange":
-                colorData = Color(UIColor.systemOrange)
-            case "Pink":
-                colorData = Color(UIColor.systemPink)
-            case "Blue":
-                colorData = Color(UIColor.systemBlue)
-            case "Indigo":
-                colorData = Color(UIColor.systemIndigo)
-            case "Dark Gray":
-                colorData = Color(UIColor.darkGray)
-            default:
-                break
-            }
-        }
-        return colorData
-    }
+    
     
     
     var body: some View {
@@ -150,24 +155,24 @@ struct TodayCommitWidgetEntryView : View {
                     VStack {
                         Text("Today's Contributions")
                             .bold()
-                            .foregroundColor(txtColor)
+                            .foregroundColor(entry.txtColor)
                         Text("")
-                        Text(emoji+" "+entry.today)
+                        Text(entry.emoji+" "+entry.today)
                             .foregroundColor(.black)
                     }
                 }
-//            case .systemMedium:
-//                VStack {
-//                    Text("Today's Contributions")
-//                        .font(.subheadline)
-//                        .padding()
-//                    Text(emoji+" "+entry.today)
-//                }
             default:
                 Text("Default")
             }
         } else {
-            Text("로그인이 필요합니다.").padding()
+            ZStack {
+                Color.white
+                Text("GitHub로\n로그인하기")
+                    .bold()
+                    .foregroundColor(.black)
+                    .lineSpacing(5)
+                    .padding()
+            }
         }
     }
     

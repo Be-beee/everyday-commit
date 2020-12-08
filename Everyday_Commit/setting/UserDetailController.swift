@@ -17,6 +17,9 @@ class UserDetailController: UIViewController {
     @IBOutlet weak var userEmailLabel: UILabel!
     @IBOutlet weak var userBlogLabel: UILabel!
     @IBOutlet weak var userTwitterLabel: UILabel!
+    @IBOutlet weak var dismissButton: UIButton!
+    
+    var themeDataManager = ThemeDataManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +31,12 @@ class UserDetailController: UIViewController {
         setLightModeOnly()
     }
     func settingUserDetailUI() {
+        if let txt = UserDefaults.shared?.string(forKey: "color") {
+            dismissButton.setTitleColor(themeDataManager.themeColorDict[txt], for: .normal)
+        } else {
+            dismissButton.setTitleColor(UIColor.systemGreen, for: .normal)
+        }
+        
         userIdLabel.text = UserInfoManager.user?.login
         userDescriptionLabel.text = UserInfoManager.user?.bio
         

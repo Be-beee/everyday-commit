@@ -138,6 +138,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dismissButton" destination="eIF-fJ-QB1" id="2yn-nl-Ox2"/>
                         <outlet property="userBlogLabel" destination="464-rj-vh0" id="99X-7D-fkr"/>
                         <outlet property="userCompanyLabel" destination="pwo-P3-tuu" id="xfI-ph-f4i"/>
                         <outlet property="userDescriptionLabel" destination="bWR-Ar-3u9" id="Jg8-8G-sPE"/>
