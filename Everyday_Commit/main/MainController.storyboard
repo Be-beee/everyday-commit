@@ -165,14 +165,14 @@
                     </tabBar>
                     <connections>
                         <segue destination="9Wj-dA-FN2" kind="relationship" relationship="viewControllers" id="7pa-V9-f8Q"/>
-                        <segue destination="MGO-qS-qdi" kind="relationship" relationship="viewControllers" id="w5i-8L-rrR"/>
+                        <segue destination="unZ-9z-37w" kind="relationship" relationship="viewControllers" id="w5i-8L-rrR"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6N2-Vm-EN9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1250.7246376811595" y="-461.38392857142856"/>
         </scene>
-        <!--Settings-->
+        <!--Settings Controller-->
         <scene sceneID="NRs-CG-IQx">
             <objects>
                 <viewController id="MGO-qS-qdi" customClass="SettingsController" customModule="Everyday_Commit" customModuleProvider="target" sceneMemberID="viewController">
@@ -235,11 +235,11 @@
                             <constraint firstItem="EnB-Et-6Lr" firstAttribute="bottom" secondItem="03J-Kh-0fw" secondAttribute="bottom" id="cag-9L-3YU"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" image="gearshape" catalog="system" id="4DO-y7-QWZ"/>
+                    <navigationItem key="navigationItem" id="SBo-Fi-73C"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MVs-Q2-S8A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2147.826086956522" y="-83.035714285714278"/>
+            <point key="canvasLocation" x="2903" y="-83"/>
         </scene>
         <!--Settings List Controller-->
         <scene sceneID="32N-SR-Fcp">
@@ -297,7 +297,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="애플리케이션 정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="D9G-a6-vU8">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="피드백 보내기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="D9G-a6-vU8">
                                                     <rect key="frame" x="20" y="0.0" width="374" height="50"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -318,7 +318,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hg3-HF-bvx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2916" y="-83"/>
+            <point key="canvasLocation" x="3645" y="-83"/>
         </scene>
         <!--Today-->
         <scene sceneID="ZJM-ps-47E">
@@ -337,6 +337,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qa3-AD-rHC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2147.826086956522" y="-765.40178571428567"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="eIh-k4-Old">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="unZ-9z-37w" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Settings" image="gearshape" catalog="system" id="4DO-y7-QWZ"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XKg-2S-Z2a">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="MGO-qS-qdi" kind="relationship" relationship="rootViewController" id="ew5-hn-XzS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Ec-Uh-vkv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2147.826086956522" y="-83.035714285714278"/>
         </scene>
     </scenes>
     <resources>

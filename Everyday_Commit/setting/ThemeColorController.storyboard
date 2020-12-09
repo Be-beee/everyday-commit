@@ -17,21 +17,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="백그라운드 설정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k0d-Cm-l4K">
-                                <rect key="frame" x="20" y="74" width="139" height="27"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                                <rect key="frame" x="150.5" y="74" width="113.5" height="21.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pEc-qI-ldL">
-                                <rect key="frame" x="364" y="72.5" width="30" height="30"/>
-                                <color key="tintColor" systemColor="systemGreenColor"/>
-                                <state key="normal" title="확인"/>
-                                <connections>
-                                    <action selector="closeThemeVC:" destination="vqG-qK-ptB" eventType="touchUpInside" id="yfe-ud-gKI"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="z6N-VB-OLp">
-                                <rect key="frame" x="0.0" y="111" width="414" height="751"/>
+                                <rect key="frame" x="0.0" y="105.5" width="414" height="756.5"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="themeCell" id="VCq-pf-b06" customClass="ThemeCell" customModule="Everyday_Commit" customModuleProvider="target">
                                         <rect key="frame" x="20" y="55.5" width="374" height="43.5"/>
@@ -72,18 +64,27 @@
                                     <outlet property="delegate" destination="vqG-qK-ptB" id="y19-Se-PHU"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pEc-qI-ldL">
+                                <rect key="frame" x="20" y="67" width="30" height="36"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                <color key="tintColor" systemColor="systemGreenColor"/>
+                                <state key="normal" title="←"/>
+                                <connections>
+                                    <action selector="closeThemeVC:" destination="vqG-qK-ptB" eventType="touchUpInside" id="yfe-ud-gKI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="p6X-Eu-IsW"/>
                         <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="k0d-Cm-l4K" firstAttribute="leading" secondItem="p6X-Eu-IsW" secondAttribute="leading" constant="20" id="59T-tF-c3O"/>
+                            <constraint firstItem="k0d-Cm-l4K" firstAttribute="centerX" secondItem="01d-MX-EdQ" secondAttribute="centerX" id="0B7-Ka-1gC"/>
                             <constraint firstItem="p6X-Eu-IsW" firstAttribute="trailing" secondItem="z6N-VB-OLp" secondAttribute="trailing" id="FN3-W6-EQF"/>
-                            <constraint firstItem="p6X-Eu-IsW" firstAttribute="trailing" secondItem="pEc-qI-ldL" secondAttribute="trailing" constant="20" id="L1t-U4-Vdk"/>
                             <constraint firstItem="z6N-VB-OLp" firstAttribute="leading" secondItem="p6X-Eu-IsW" secondAttribute="leading" id="W4X-Q1-t4t"/>
                             <constraint firstItem="pEc-qI-ldL" firstAttribute="centerY" secondItem="k0d-Cm-l4K" secondAttribute="centerY" id="ZVQ-Zt-Whq"/>
                             <constraint firstItem="p6X-Eu-IsW" firstAttribute="bottom" secondItem="z6N-VB-OLp" secondAttribute="bottom" id="hZZ-E5-tWu"/>
                             <constraint firstItem="z6N-VB-OLp" firstAttribute="top" secondItem="k0d-Cm-l4K" secondAttribute="bottom" constant="10" id="kNi-EN-APk"/>
                             <constraint firstItem="k0d-Cm-l4K" firstAttribute="top" secondItem="p6X-Eu-IsW" secondAttribute="top" constant="30" id="ukV-90-IyR"/>
+                            <constraint firstItem="pEc-qI-ldL" firstAttribute="leading" secondItem="p6X-Eu-IsW" secondAttribute="leading" constant="20" id="xmP-Y6-Izp"/>
                         </constraints>
                     </view>
                     <connections>

@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class SettingsListController: UITableViewController {
+class SettingsListController: UITableViewController, MFMailComposeViewControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,19 +20,36 @@ class SettingsListController: UITableViewController {
         switch indexPath.section {
         case 0:
             guard let userDetailVC = UIStoryboard(name: "UserDetailController", bundle: nil).instantiateViewController(withIdentifier: "UserDetailController") as? UserDetailController else { return }
-            userDetailVC.modalPresentationStyle = .fullScreen
-            self.present(userDetailVC, animated: true, completion: nil)
+            self.navigationController?.pushViewController(userDetailVC, animated: true)
         case 1:
             if indexPath.row == 0 {
                 guard let themeVC = UIStoryboard(name: "ThemeColorController", bundle: nil).instantiateViewController(withIdentifier: "ThemeColorController") as? ThemeColorController else { return }
-                themeVC.modalPresentationStyle = .fullScreen
-                self.present(themeVC, animated: true, completion: nil)
+                self.navigationController?.pushViewController(themeVC, animated: true)
             } else {
-                // application information view
+                let mailComposeVC = configureMailComposer()
+                if MFMailComposeViewController.canSendMail() {
+                    self.present(mailComposeVC, animated: true, completion: nil)
+                } else {
+                    print("이메일을 보낼 수 없습니다.")
+                }
             }
         default:
             print("indexPath section: \(indexPath.section), row: \(indexPath.row)")
         }
         
+    }
+    
+    func configureMailComposer() -> MFMailComposeViewController {
+        let mailComposeVC = MFMailComposeViewController()
+        mailComposeVC.mailComposeDelegate = self
+        mailComposeVC.setToRecipients(["maybutter756@gmail.com"])
+        mailComposeVC.setSubject("매일 커밋 문의")
+        mailComposeVC.setMessageBody("안녕~", isHTML: false)
+        
+        return mailComposeVC
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }

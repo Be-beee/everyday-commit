@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2SV-7X-8h7">
-                                <rect key="frame" x="0.0" y="110.66666666666669" width="390" height="699.33333333333326"/>
+                                <rect key="frame" x="0.0" y="105.66666666666669" width="390" height="704.33333333333326"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H7w-TM-qAu">
                                         <rect key="frame" x="0.0" y="0.0" width="390" height="620.33333333333337"/>
@@ -41,7 +41,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aer-us-Vtz">
-                                                <rect key="frame" x="105" y="19.999999999999986" width="180" height="180"/>
+                                                <rect key="frame" x="105" y="20" width="180" height="180"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="180" id="6Ea-mt-L8J"/>
                                                     <constraint firstAttribute="width" constant="180" id="6FX-UH-qCm"/>
@@ -110,15 +110,16 @@
                                 </constraints>
                             </scrollView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="사용자 정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQo-CY-E6m">
-                                <rect key="frame" x="20" y="74" width="101" height="26.666666666666671"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <rect key="frame" x="153.66666666666666" y="74" width="82.666666666666657" height="21.666666666666671"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eIF-fJ-QB1">
-                                <rect key="frame" x="340" y="69.333333333333329" width="30" height="36"/>
+                                <rect key="frame" x="20" y="67" width="30" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="✕"/>
+                                <color key="tintColor" systemColor="systemGreenColor"/>
+                                <state key="normal" title="←"/>
                                 <connections>
                                     <action selector="dismissUserDetailVC:" destination="exN-LO-wsz" eventType="touchUpInside" id="oLN-d1-3uU"/>
                                 </connections>
@@ -127,11 +128,11 @@
                         <viewLayoutGuide key="safeArea" id="cHY-6a-brm"/>
                         <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="tQo-CY-E6m" firstAttribute="leading" secondItem="cHY-6a-brm" secondAttribute="leading" constant="20" id="6PA-Ad-ymx"/>
-                            <constraint firstItem="cHY-6a-brm" firstAttribute="trailing" secondItem="eIF-fJ-QB1" secondAttribute="trailing" constant="20" id="NxM-vT-y84"/>
+                            <constraint firstItem="eIF-fJ-QB1" firstAttribute="leading" secondItem="cHY-6a-brm" secondAttribute="leading" constant="20" id="OkO-RB-6tt"/>
                             <constraint firstItem="eIF-fJ-QB1" firstAttribute="centerY" secondItem="tQo-CY-E6m" secondAttribute="centerY" id="RTa-Zf-LSk"/>
                             <constraint firstItem="2SV-7X-8h7" firstAttribute="leading" secondItem="cHY-6a-brm" secondAttribute="leading" id="YiH-L7-luQ"/>
                             <constraint firstItem="cHY-6a-brm" firstAttribute="bottom" secondItem="2SV-7X-8h7" secondAttribute="bottom" id="ZSr-vB-nyV"/>
+                            <constraint firstItem="tQo-CY-E6m" firstAttribute="centerX" secondItem="3dr-A9-hco" secondAttribute="centerX" id="gf4-cA-1ke"/>
                             <constraint firstItem="tQo-CY-E6m" firstAttribute="top" secondItem="cHY-6a-brm" secondAttribute="top" constant="30" id="k7M-yE-m2T"/>
                             <constraint firstItem="2SV-7X-8h7" firstAttribute="trailing" secondItem="cHY-6a-brm" secondAttribute="trailing" id="vwI-L2-zoE"/>
                             <constraint firstItem="2SV-7X-8h7" firstAttribute="top" secondItem="tQo-CY-E6m" secondAttribute="bottom" constant="10" id="xC2-bq-MvD"/>
@@ -155,6 +156,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="tertiarySystemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
