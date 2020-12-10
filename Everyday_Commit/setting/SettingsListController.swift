@@ -41,10 +41,11 @@ class SettingsListController: UITableViewController, MFMailComposeViewController
     
     func configureMailComposer() -> MFMailComposeViewController {
         let mailComposeVC = MFMailComposeViewController()
+        let systemVersion = UIDevice.current.systemVersion
         mailComposeVC.mailComposeDelegate = self
         mailComposeVC.setToRecipients(["maybutter756@gmail.com"])
         mailComposeVC.setSubject("매일 커밋 문의")
-        mailComposeVC.setMessageBody("안녕~", isHTML: false)
+        mailComposeVC.setMessageBody("현재 iOS 버전: \(systemVersion)\n문의 및 피드백 감사합니다!:)", isHTML: false)
         
         return mailComposeVC
     }
