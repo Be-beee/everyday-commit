@@ -10,7 +10,7 @@ import UIKit
 struct ClientLogin {
     static let client_id = "da977e2d6b91ad96896f"
     static let client_secret = "5d06d669663255d70e5341f6284c017d582fa240"
-    static let scope = "site_admin repo user" // repo 추가로 더 받기?? 
+    static let scope = "site_admin user"
     static let reqAuthUrl = "https://github.com/login/oauth/authorize"
     static let tokenReqUrl = "https://github.com/login/oauth/access_token"
     static let reqUserInfoUrl = "https://api.github.com/user"
