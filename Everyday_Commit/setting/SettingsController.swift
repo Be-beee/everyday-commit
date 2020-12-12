@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import WidgetKit
 
 class SettingsController: UIViewController {
     
@@ -29,6 +30,7 @@ class SettingsController: UIViewController {
         let logout = UIAlertAction(title: "로그아웃", style: .destructive) { action in
             UserDefaults.shared?.removeObject(forKey: "token")
             UserDefaults.shared?.removeObject(forKey: "userID")
+            WidgetCenter.shared.reloadAllTimelines()
             
             // 화면 이동하기
             guard let loginVC = UIStoryboard(name: "LoginController", bundle: nil).instantiateViewController(withIdentifier: "LoginVC") as? LoginController else { return }

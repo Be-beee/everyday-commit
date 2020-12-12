@@ -15,6 +15,10 @@ extension UserDefaults {
     }
 }
 
+extension Date {
+    
+}
+
 struct ThemeData {
     static let defaultEmoji = ["🕸", "🌱", "🌿", "🌳"]
     static let defaultColor = [
@@ -46,6 +50,7 @@ class ParserManager: NSObject, XMLParserDelegate {
         if elementName == "rect" {
             let df = DateFormatter()
             df.dateFormat = "yyyy-MM-dd"
+            df.timeZone = TimeZone.autoupdatingCurrent
             let today = df.string(from: Date())
             if let date = attributeDict["data-date"], let count = attributeDict["data-count"], date == today  {
                 userData.today_count = Int(count) ?? 0
@@ -105,10 +110,9 @@ struct Provider: TimelineProvider {
     func addEntries(_ currentDate: Date, _ today: String, _ score: Int) -> [UserEntry] {
         var result: [UserEntry] = []
         for offset in 0 ..< 2 {
-            let entryDate = Calendar.current.date(byAdding: .second, value: offset, to: currentDate)!
+            let entryDate = Calendar.current.date(byAdding: .minute, value: offset, to: currentDate)!
             let entry = UserEntry(date: entryDate, today: today, score: score)
             result.append(entry)
-            // entry update delay issue
         }
         
         return result

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import WidgetKit
 
 class LoginController: UIViewController {
     
@@ -38,6 +39,7 @@ extension LoginController: LoginDelegate {
     func loginSucceessed() {
         DispatchQueue.main.async {
             self.dismiss(animated: true, completion: nil)
+            WidgetCenter.shared.reloadAllTimelines()
         }
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import WidgetKit
 
 class ThemeColorController: UIViewController {
     
@@ -93,9 +94,11 @@ extension ThemeColorController: UITableViewDelegate, UITableViewDataSource {
             let txt = themeDataManager.themeColor[indexPath.row]
             UserDefaults.shared?.set(txt, forKey: "color")
             self.confirmButton.setTitleColor(themeDataManager.themeColorDict[txt], for: .normal)
+            WidgetCenter.shared.reloadAllTimelines()
         } else {
             let emojis = themeDataManager.emoji[indexPath.row].split(separator: " ").map{ String($0) }
             UserDefaults.shared?.set(emojis, forKey: "emoji")
+            WidgetCenter.shared.reloadAllTimelines()
         }
         tableView.reloadData()
     }
