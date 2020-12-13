@@ -60,7 +60,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 var request = URLRequest(url: tokenUrl)
                 request.setValue(ClientLogin.tokenReqHeader.1, forHTTPHeaderField: ClientLogin.tokenReqHeader.0)
                 
-                UserInfoManager.requestInfo(request, .token){}
+                UserInfoManager.requestInfo(request, .token, completion: nil, handlingError: nil)
             }
             // code를 활용해 URLSession 후 UserInfo에 값 입력
         }

@@ -161,8 +161,13 @@ struct TodayCommitWidgetEntryView : View {
                             .bold()
                             .foregroundColor(entry.txtColor)
                         Text("")
-                        Text(entry.emoji+" "+entry.today)
-                            .foregroundColor(.black)
+                        if entry.today == "0" {
+                            Text(entry.emoji+" "+entry.today)
+                                .foregroundColor(.red)
+                        } else {
+                            Text(entry.emoji+" "+entry.today)
+                                .foregroundColor(.black)
+                        }
                     }
                 }
             default:

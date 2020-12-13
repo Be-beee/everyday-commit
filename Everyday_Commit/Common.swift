@@ -87,12 +87,16 @@ class UserInfoManager {
         delegate?.loginSucceessed()
     }
     
-    static func requestInfo(_ request: URLRequest, _ parseType: ParseType, _ completion: @escaping (() -> Void)) {
-        print("networking...")
+    static func requestInfo(_ request: URLRequest, _ parseType: ParseType, completion: (() -> Void)?, handlingError: (() -> Void)?) {
         let session = URLSession(configuration: .default)
         let dataTask = session.dataTask(with: request) { (data, response, error) in
             let successRange = 200 ..< 300
-            guard error == nil, let statusCode = (response as? HTTPURLResponse)?.statusCode, successRange.contains(statusCode) else { return }
+            guard error == nil, let statusCode = (response as? HTTPURLResponse)?.statusCode, successRange.contains(statusCode) else {
+                DispatchQueue.main.async {
+                    handlingError?()
+                }
+                return
+            }
             guard let resultData = data else { return }
             if parseType == .token {
                 guard let info = parseTokens(resultData) else { return }
@@ -103,7 +107,7 @@ class UserInfoManager {
                 guard let url = URL(string: ClientLogin.reqUserInfoUrl) else { return }
                 var req = URLRequest(url: url)
                 req.setValue("token \(token)", forHTTPHeaderField: ClientLogin.userInfoHeader.0)
-                requestInfo(req, .user) {}
+                requestInfo(req, .user, completion: nil, handlingError: nil)
             } else if parseType == .user {
                 guard let info = parseUserInfo(resultData) else { return }
                 user = info
@@ -111,7 +115,7 @@ class UserInfoManager {
                     userDefault.set(user?.login, forKey: "userID")
                 }
                 DispatchQueue.main.async {
-                    completion()
+                    completion?()
                 }
                 self.loginSuccessed()
             }

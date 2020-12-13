@@ -16,6 +16,7 @@ class MainController: UIViewController {
     
     @IBOutlet weak var userId: UILabel!
     @IBOutlet weak var userImg: UIImageView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,7 @@ class MainController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        activityIndicator.startAnimating()
         if let color = UserDefaults.shared?.string(forKey: "color") {
             view.backgroundColor = themeDataManager.themeColorDict[color]
             self.tabBarController?.tabBar.tintColor = themeDataManager.themeColorDict[color]
@@ -34,18 +36,24 @@ class MainController: UIViewController {
             userId.text = id
             userImg.image = urlToImage(from: img)
             callCommitData()
+            activityIndicator.stopAnimating()
         } else if let token = UserDefaults.shared?.string(forKey: "token") {
-            print(token)
             guard let url = URL(string: ClientLogin.reqUserInfoUrl) else { return }
             var req = URLRequest(url: url)
             req.setValue("token \(token)", forHTTPHeaderField: ClientLogin.userInfoHeader.0)
-            UserInfoManager.requestInfo(req, .user){
-                // 네트워킹 후 라벨 표시
+            UserInfoManager.requestInfo(req, .user) {
                 if let id = UserInfoManager.user?.login, let img = UserInfoManager.user?.avatar_url {
                     self.userId.text = id
                     self.userImg.image = self.urlToImage(from: img)
                     self.callCommitData()
                 }
+                self.activityIndicator.stopAnimating()
+            } handlingError: {
+                self.activityIndicator.stopAnimating()
+                let alert = UIAlertController(title: "알림", message: "네트워크 연결 상태를 확인해주세요.", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "확인", style: .default, handler: nil)
+                alert.addAction(ok)
+                self.present(alert, animated: true, completion: nil)
             }
         }
     }
@@ -144,7 +152,7 @@ extension MainController: UICollectionViewDataSource {
             guard let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "listFooter", for: indexPath) as? ListFooterView else {
                 return UICollectionReusableView()
             }
-            footer.moreButton.addTarget(self, action: #selector(showMoreContributions), for: .touchUpInside)
+            footer.moreButton.addTarget(self, action: #selector(goToMyGitHub), for: .touchUpInside)
             
             return footer
         default:
@@ -152,7 +160,7 @@ extension MainController: UICollectionViewDataSource {
         }
     }
     
-    @objc func showMoreContributions() {
+    @objc func goToMyGitHub() {
         guard let id = UserInfoManager.user?.login else { return }
         guard let url = URL(string: "https://github.com/\(id)") else { return }
         let safariVC = SFSafariViewController(url: url)
