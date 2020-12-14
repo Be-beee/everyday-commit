@@ -27,7 +27,8 @@ struct ThemeData {
         "Pink": Color(UIColor.systemPink),
         "Blue": Color(UIColor.systemBlue),
         "Indigo": Color(UIColor.systemIndigo),
-        "Dark Gray": Color(UIColor.darkGray)
+        "Dark Gray": Color(UIColor.darkGray),
+        "Black": Color(UIColor.black)
     ]
 }
 

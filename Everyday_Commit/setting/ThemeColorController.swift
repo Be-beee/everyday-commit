@@ -118,9 +118,10 @@ class ThemeDataManager {
         "Pink": UIColor.systemPink,
         "Blue": UIColor.systemBlue,
         "Indigo": UIColor.systemIndigo,
-        "Dark Gray": UIColor.darkGray
+        "Dark Gray": UIColor.darkGray,
+        "Black": UIColor.black
     ]
-    var emoji = ["🕸 🌱 🌿 🌳", "😢 ☺️ 😆 😍", "💔 💛 🧡 ❤️", "🥉 🥈 🥇 🎖", "💥 ⭐️ 💫 ✨"]
+    var emoji = ["🕸 🌱 🌿 🌳", "😢 ☺️ 😆 😍", "💔 💛 🧡 ❤️", "🥉 🥈 🥇 🎖", "💥 ⭐️ 💫 ✨", "☔️ 🌤 ☀️ 🌈", "💬 💭 💡 🔥"]
     
     var colorListCount: Int {
         return themeColor.count
