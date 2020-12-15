@@ -7,16 +7,30 @@
 
 import UIKit
 
-struct ClientLogin {
-    static let client_id = "da977e2d6b91ad96896f"
-    static let client_secret = "5d06d669663255d70e5341f6284c017d582fa240"
-    static let scope = "site_admin user"
-    static let reqAuthUrl = "https://github.com/login/oauth/authorize"
-    static let tokenReqUrl = "https://github.com/login/oauth/access_token"
-    static let reqUserInfoUrl = "https://api.github.com/user"
-    static let tokenReqHeader = ("Accept", "application/json")
-    static var userInfoHeader = ("Authorization", "token")
+struct ClientData: Codable {
+    var client_id: String
+    var client_secret: String
+    var scope: String
+    var reqAuthUrl: String
+    var tokenReqUrl: String
+    var reqUserInfoUrl: String
+    var tokenReqHeader: [String: String]
+    var userInfoHeader: [String: String]
     
+    init() {
+        let path = Bundle.main.path(forResource: "OAuthData", ofType: "plist")!
+        let xml = FileManager.default.contents(atPath: path)!
+        let clientData = try! PropertyListDecoder().decode(ClientData.self,from: xml)
+        
+        client_id = clientData.client_id
+        client_secret = clientData.client_secret
+        scope = clientData.scope
+        reqAuthUrl = clientData.reqAuthUrl
+        tokenReqUrl = clientData.tokenReqUrl
+        reqUserInfoUrl = clientData.reqUserInfoUrl
+        tokenReqHeader = clientData.tokenReqHeader
+        userInfoHeader = clientData.userInfoHeader
+    }
 }
 
 extension UserDefaults {
@@ -42,7 +56,7 @@ struct TokenInfo: Codable {
     }
 }
 
-struct UserInfo: Codable { // 필요하면 데이터를 더 가져올 수 있음
+struct UserInfo: Codable {
     var login: String
     var name: String
     var avatar_url: String
@@ -59,6 +73,8 @@ class UserInfoManager {
     static var tokens: TokenInfo?
     static var user: UserInfo?
     static var delegate: LoginDelegate?
+    
+    static var clientData = ClientData()
     
     static func parseTokens(_ data: Data) -> TokenInfo? {
         // resultData -> UserInfo
@@ -104,9 +120,9 @@ class UserInfoManager {
                 
                 guard let token = tokens?.access_token else { return }
                 UserDefaults.shared?.set(token, forKey: "token")
-                guard let url = URL(string: ClientLogin.reqUserInfoUrl) else { return }
+                guard let url = URL(string: clientData.reqUserInfoUrl) else { return }
                 var req = URLRequest(url: url)
-                req.setValue("token \(token)", forHTTPHeaderField: ClientLogin.userInfoHeader.0)
+                req.setValue("token \(token)", forHTTPHeaderField: clientData.userInfoHeader["title"] ?? "Authorization")
                 requestInfo(req, .user, completion: nil, handlingError: nil)
             } else if parseType == .user {
                 guard let info = parseUserInfo(resultData) else { return }

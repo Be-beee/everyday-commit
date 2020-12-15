@@ -9,6 +9,8 @@ import UIKit
 import SafariServices
 
 class MainController: UIViewController {
+    
+    let clientData = ClientData()
 
     var userContributions: UserContributions?
     var themeDataManager = ThemeDataManager()
@@ -38,9 +40,9 @@ class MainController: UIViewController {
             callCommitData()
             activityIndicator.stopAnimating()
         } else if let token = UserDefaults.shared?.string(forKey: "token") {
-            guard let url = URL(string: ClientLogin.reqUserInfoUrl) else { return }
+            guard let url = URL(string: clientData.reqUserInfoUrl) else { return }
             var req = URLRequest(url: url)
-            req.setValue("token \(token)", forHTTPHeaderField: ClientLogin.userInfoHeader.0)
+            req.setValue("token \(token)", forHTTPHeaderField: clientData.userInfoHeader["title"] ?? "Authorization")
             UserInfoManager.requestInfo(req, .user) {
                 if let id = UserInfoManager.user?.login, let img = UserInfoManager.user?.avatar_url {
                     self.userId.text = id

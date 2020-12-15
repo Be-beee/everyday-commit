@@ -48,17 +48,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let url = URLContexts.first?.url {
             let code = url.absoluteString.split(separator: "=").last?.description ?? ""
             if !code.isEmpty {
-                var component = URLComponents(string: ClientLogin.tokenReqUrl)
+                let clientData = ClientData()
+                var component = URLComponents(string: clientData.tokenReqUrl)
                 let required = [
-                    URLQueryItem(name: "client_id", value: ClientLogin.client_id),
-                    URLQueryItem(name: "client_secret", value: ClientLogin.client_secret),
+                    URLQueryItem(name: "client_id", value: clientData.client_id),
+                    URLQueryItem(name: "client_secret", value: clientData.client_secret),
                     URLQueryItem(name: "code", value: code)
                 ]
                 component?.queryItems = required
                 
                 guard let tokenUrl = component?.url else { return }
                 var request = URLRequest(url: tokenUrl)
-                request.setValue(ClientLogin.tokenReqHeader.1, forHTTPHeaderField: ClientLogin.tokenReqHeader.0)
+                request.setValue(clientData.tokenReqHeader["contents"] ?? "", forHTTPHeaderField: clientData.tokenReqHeader["title"] ?? "")
                 
                 UserInfoManager.requestInfo(request, .token, completion: nil, handlingError: nil)
             }

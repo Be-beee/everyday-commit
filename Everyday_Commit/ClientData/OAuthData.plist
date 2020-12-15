@@ -2,9 +2,31 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>clientID</key>
+	<key>scope</key>
+	<string>site_admin user</string>
+	<key>client_id</key>
 	<string>da977e2d6b91ad96896f</string>
-	<key>clientSecret</key>
+	<key>client_secret</key>
 	<string>5d06d669663255d70e5341f6284c017d582fa240</string>
+	<key>reqAuthUrl</key>
+	<string>https://github.com/login/oauth/authorize</string>
+	<key>tokenReqUrl</key>
+	<string>https://github.com/login/oauth/access_token</string>
+	<key>reqUserInfoUrl</key>
+	<string>https://api.github.com/user</string>
+	<key>tokenReqHeader</key>
+	<dict>
+		<key>title</key>
+		<string>Accept</string>
+		<key>contents</key>
+		<string>application/json</string>
+	</dict>
+	<key>userInfoHeader</key>
+	<dict>
+		<key>title</key>
+		<string>Authorization</string>
+		<key>contents</key>
+		<string>token</string>
+	</dict>
 </dict>
 </plist>

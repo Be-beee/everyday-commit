@@ -10,6 +10,8 @@ import WidgetKit
 
 class LoginController: UIViewController {
     
+    var clientData = ClientData()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setLightModeOnly()
@@ -19,9 +21,9 @@ class LoginController: UIViewController {
     }
 
     @IBAction func loginGithub(_ sender: UIButton) {
-        let clientID = ClientLogin.client_id
-        let scope = ClientLogin.scope
-        let urlString = ClientLogin.reqAuthUrl
+        let clientID = clientData.client_id
+        let scope = clientData.scope
+        let urlString = clientData.reqAuthUrl
         var components = URLComponents(string: urlString)!
         
         components.queryItems = [
