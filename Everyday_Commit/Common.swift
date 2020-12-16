@@ -58,10 +58,9 @@ struct TokenInfo: Codable {
 
 struct UserInfo: Codable {
     var login: String
-    var name: String
-    var avatar_url: String
-    var bio: String
-    var public_repos: Int
+    var name: String?
+    var avatar_url: String?
+    var bio: String?
     var company: String?
     var location: String?
     var email: String?
