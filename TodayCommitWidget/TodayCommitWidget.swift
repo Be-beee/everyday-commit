@@ -15,10 +15,6 @@ extension UserDefaults {
     }
 }
 
-extension Date {
-    
-}
-
 struct ThemeData {
     static let defaultEmoji = ["🕸", "🌱", "🌿", "🌳"]
     static let defaultColor = [
