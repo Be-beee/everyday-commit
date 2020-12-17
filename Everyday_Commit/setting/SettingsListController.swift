@@ -30,6 +30,10 @@ class SettingsListController: UITableViewController, MFMailComposeViewController
                 if MFMailComposeViewController.canSendMail() {
                     self.present(mailComposeVC, animated: true, completion: nil)
                 } else {
+                    let alert = UIAlertController(title: "알림", message: "이메일을 보낼 수 없습니다.\n Mail에 계정이 등록되어 있는지 확인해주세요.", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "확인", style: .default, handler: nil)
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
                     print("이메일을 보낼 수 없습니다.")
                 }
             }
